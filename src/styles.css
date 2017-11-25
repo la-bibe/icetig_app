@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #00ADB5;
+  --secondary-color: #282828;
+  --tertiary-color: #F4EED7; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+/*# sourceMappingURL=styles.css.map */
