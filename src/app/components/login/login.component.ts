@@ -10,17 +10,12 @@ export class LoginComponent implements OnInit {
   login = '';
   pass = '';
 
-  constructor(private iconReg:SvgIconRegistryService) { }
+  constructor() { }
 
   ngOnInit() {
-    document.body.style.background = '#525252';
-    this.iconReg.loadSvg('assets/pedago-dark.svg');
   }
 
   onSubmit() {
-    let token = '1234567890';
-
-
   }
 
 }

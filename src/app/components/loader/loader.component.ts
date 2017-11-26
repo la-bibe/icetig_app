@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoaderComponent implements OnInit {
 
+  number = '40s';
+
   constructor() { }
 
   ngOnInit() {
