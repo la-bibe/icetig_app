@@ -8,6 +8,8 @@ import {AppRoutingModule} from './/app-routing.module';
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from '@angular/forms';
 import {AngularSvgIconModule} from "angular-svg-icon";
+import { LoaderComponent } from './components/loader/loader.component';
+import { DynamicBackgroundComponent } from './components/dynamic-background/dynamic-background.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent}
@@ -17,7 +19,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoaderComponent,
+    LoginComponent,
+    DynamicBackgroundComponent
   ],
   imports: [
     BrowserModule,
