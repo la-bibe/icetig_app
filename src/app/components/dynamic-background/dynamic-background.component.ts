@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 
 @Component({
   selector: 'app-dynamic-background',
@@ -23,10 +23,11 @@ export class DynamicBackgroundComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.logoList = new Array(this.createLogoProperties(1),
+    this.logoList = new Array(this.createLogoProperties(6),
       this.createLogoProperties(2),
       this.createLogoProperties(3),
-      this.createLogoProperties(8),
+      this.createLogoProperties(7),
+      this.createLogoProperties(5),
       this.createLogoProperties(9));
   }
 
@@ -36,74 +37,67 @@ export class DynamicBackgroundComponent implements OnInit, AfterViewInit {
     }
   }
 
-  randomNeg = function() {
-    return(Math.random() < 0.5 ? 1 : -1);
+  randomNeg = function () {
+    return (Math.random() < 0.5 ? 1 : -1);
   };
 
-  createLogoProperties = function(ratio) {
+  createLogoProperties = function (ratio) {
     const logo = {x: 500, y: 300, rotateSpeed: ratio, vx: 500, vy: 300};
 
     const x = Math.floor((Math.random() * (this.innerWidth)) - ratio * this.zoomRatio / 2);
     const y = Math.floor((Math.random() * (this.innerHeight)) - ratio * this.zoomRatio / 2);
-
-    logo.vx = Math.floor((Math.random() + 1) * this.randomNeg());
-    logo.vy = Math.floor((Math.random() + 1) * this.randomNeg());
-    const norm = Math.sqrt(logo.vx * logo.vx + logo.vy * logo.vy);
-    logo.vx /= norm;
-    logo.vy /= norm;
 
     logo.x = x;
     logo.y = y;
     return logo;
   };
 
-  newLogoProperties = function(logo, innerWidth, innerHeight, zoomRatio, createCoords) {
+  newLogoProperties = function (logo, innerWidth, innerHeight, zoomRatio, createCoords) {
 
-	var coord = createCoords(logo, innerWidth, innerHeight, zoomRatio);
-	logo.x = coord.x;
-	logo.y = coord.y;
-	var coord = createCoords(logo, innerWidth, innerHeight, zoomRatio);
-	logo.x = coord.x;
-	logo.y = coord.y;
+    let coord = createCoords(logo, innerWidth, innerHeight, zoomRatio);
+    logo.x = coord.x;
+    logo.y = coord.y;
   };
 
-  createCoords = function(logo, innerWidth, innerHeight, zoomRatio)
-  {
-	  const expandedWidth = innerWidth + logo.rotateSpeed * zoomRatio;
-	  const expandedHeight = innerHeight + logo.rotateSpeed * zoomRatio;
-	  var coord= {x:0, y:0};
+  createCoords = function (logo, innerWidth, innerHeight, zoomRatio) {
+    const expandedWidth = innerWidth + logo.rotateSpeed * zoomRatio;
+    const expandedHeight = innerHeight + logo.rotateSpeed * zoomRatio;
+    const coord = {x: 0, y: 0};
 
-	  var p = Math.random() * (expandedWidth + expandedHeight) * 2;
-	  if (p < (expandedWidth + expandedHeight)) {
-		if (p < expandedWidth) {
-		  coord.x = p;
-		  coord.y = 0;
-		} else {
-		  coord.x = expandedWidth;
-		  coord.y = p - expandedWidth;
-		}
-	  } else {
-		p = p - (expandedWidth + expandedHeight);
-		if (p < expandedWidth) {
-		  coord.x = expandedWidth - p;
-		  coord.y = expandedHeight;
-		} else {
-		  coord.x = 0;
-		  coord.y = expandedHeight - (p - expandedWidth);
-		}
-	  }
+    let p = Math.random() * (expandedWidth + expandedHeight) * 2;
+    if (p < (expandedWidth + expandedHeight)) {
+      if (p < expandedWidth) {
+        coord.x = p;
+        coord.y = 0;
+      } else {
+        coord.x = expandedWidth;
+        coord.y = p - expandedWidth;
+      }
+    } else {
+      p = p - (expandedWidth + expandedHeight);
+      if (p < expandedWidth) {
+        coord.x = expandedWidth - p;
+        coord.y = expandedHeight;
+      } else {
+        coord.x = 0;
+        coord.y = expandedHeight - (p - expandedWidth);
+      }
+    }
 
-	  coord.x -= (logo.rotateSpeed * zoomRatio);
-      coord.y -= (logo.rotateSpeed * zoomRatio);
+    coord.x -= (logo.rotateSpeed * zoomRatio);
+    coord.y -= (logo.rotateSpeed * zoomRatio);
 
-	  return coord;
-  }
+    return coord;
+  };
 
-  moveLogo = function(elem) {
-	  function frame(newLogoProperties, zoomRatio, createCoords, innerWidth, innerHeight) {
-		  newLogoProperties(elem, innerWidth, innerHeight, zoomRatio, createCoords);
-	  }
-	frame(this.newLogoProperties, this.zoomRatio, this.createCoords, this.innerWidth, this.innerHeight);
-    setInterval(frame, elem.rotateSpeed * 2000 + 10000, this.newLogoProperties, this.zoomRatio, this.createCoords this.innerWidth, this.innerHeight);
+  moveLogo = function (elem) {
+    function frame(newLogoProperties, zoomRatio, createCoords, innerWidth, innerHeight) {
+      newLogoProperties(elem, innerWidth, innerHeight, zoomRatio, createCoords);
+    }
+
+   setTimeout(frame, 0, this.newLogoProperties, this.zoomRatio,
+     this.createCoords, this.innerWidth, this.innerHeight);
+    setInterval(frame, elem.rotateSpeed * 2000 + 10000, this.newLogoProperties, this.zoomRatio,
+      this.createCoords, this.innerWidth, this.innerHeight);
   };
 }
