@@ -1,7 +1,8 @@
 <div class="background">
   <svg *ngFor="let logo of logoList" attr.width="{{logo.rotateSpeed*zoomRatio}}" attr.height="{{logo.rotateSpeed*zoomRatio}}" class="background-logo" viewBox="0 0 500 500" x="0px" y="0px"
        [style.top]="logo.y"
-       [style.left]="logo.x">
+       [style.left]="logo.x"
+	   [style.transition]="'all ' + (logo.rotateSpeed * 2 + 10) + 's linear'">
     <g id="grey-logo">
       <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 250 250" to="360 250 250"
                         attr.dur="{{logo.rotateSpeed * 50}}" repeatCount="indefinite"/>
