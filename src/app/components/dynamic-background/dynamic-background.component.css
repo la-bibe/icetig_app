@@ -5,8 +5,9 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  background-color: var(--secondary-colorr); }
+  background-color: var(--secondary-color); }
   .background > svg {
-    position: absolute; }
+    position: absolute;
+    transition: all 10s; }
 
 /*# sourceMappingURL=dynamic-background.component.css.map */
