@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {SvgIconRegistryService} from "angular-svg-icon";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-login',
@@ -7,8 +7,13 @@ import {SvgIconRegistryService} from "angular-svg-icon";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('loginTooltip') loginTooltip: NgbTooltip;
+  @ViewChild('passTooltip') passTooltip: NgbTooltip;
   login = '';
   pass = '';
+
+  loginErrorMessage = "Bad login";
+  passErrorMessage = "Bad pass";
 
   constructor() { }
 
@@ -16,6 +21,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-  }
 
+    if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login)))
+      this.loginTooltip.open();
+
+    // this.loginTooltip.open();
+
+    setTimeout(() => {this.loginTooltip.close(); this.passTooltip.close(); }, 2000);
+  }
 }

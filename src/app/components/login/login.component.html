@@ -16,15 +16,15 @@
 
         <form class="form">
           <label>Login</label>
-          <input type="text" name="login" required [(ngModel)]="login">
+          <input type="text" name="login" required [(ngModel)]="login" [ngbTooltip]="loginErrorMessage" #loginTooltip="ngbTooltip" [triggers]="blur">
           <label>Password</label>
-          <input type="password" name="pass" required [(ngModel)]="pass">
+          <input type="password" name="pass" required [(ngModel)]="pass" [ngbTooltip]="passErrorMessage" #passTooltip="ngbTooltip" [triggers]="blur">
           <div class="submit-wrapper">
             <label class="checkbox-container">Remember me
               <input type="checkbox" checked="checked">
               <span class="checkmark"></span>
             </label>
-            <button type="submit" class="submit-button" (submit)="onSubmit()">Connect</button>
+            <button type="submit" class="submit-button" (click)="onSubmit()">Connect</button>
           </div>
 
         </form>
@@ -35,3 +35,4 @@
     </div>
   </div>
 </div>
+
