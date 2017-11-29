@@ -1,0 +1,19 @@
+.tooltip {
+  left: auto !important;
+  right: 15px;
+  &.bs-tooltip-top[_nghost-c3]   .arrow[_ngcontent-c3],
+  &.bs-tooltip-bottom[_nghost-c3]   .arrow[_ngcontent-c3] {
+    left: auto;
+    right: 20%;
+  }
+
+  &.bs-tooltip-auto[x-placement^=top] .arrow::before,
+  &.bs-tooltip-top .arrow::before {
+    border-top-color: var(--primary-color);
+  }
+
+  .tooltip-inner {
+    border-radius: 0;
+    background-color: var(--primary-color);
+  }
+}
