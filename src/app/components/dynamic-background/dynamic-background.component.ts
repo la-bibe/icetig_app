@@ -18,11 +18,7 @@ export class DynamicBackgroundComponent implements OnInit, AfterViewInit {
     this.innerWidth = (window.screen.width);
 
 	//Calculate ZoomRatio according to screen size
-    if (this.innerWidth < this.innerHeight) {
-      this.zoomRatio = this.innerWidth / 10;
-    } else {
-      this.zoomRatio = this.innerHeight / 10;
-    }
+    this.zoomRatio = ((this.innerWidth < this.innerHeight) ? this.innerWidth : this.innerHeight) / 10;
   }
 
   ngOnInit() {
@@ -63,39 +59,27 @@ export class DynamicBackgroundComponent implements OnInit, AfterViewInit {
 
 	while (logo.p === pval) {
 		p = Math.random() * (expandedWidth + expandedHeight) * 2;
-		if (p < expandedWidth) {
+		if (logo.p != 1 && p < expandedWidth) {
+			coord.x = p;
+			coord.y = 0;
 			pval = 1;
-		} else if (p < expandedWidth + expandedHeight) {
+		} else if (logo.p != 2 && p < expandedWidth + expandedHeight) {
+			coord.x = expandedWidth;
+			coord.y = p - expandedWidth;
 			pval = 2;
-		} else if (p - (expandedWidth + expandedHeight) < expandedWidth) {
+		} else if (logo.p != 3 && p - (expandedWidth + expandedHeight) < expandedWidth) {
 			p = p - (expandedWidth + expandedHeight);
+			coord.x = expandedWidth - p;
+			coord.y = expandedHeight;
 			pval = 3;
-		} else {
+		} else if (logo.p != 4) {
 			p = p - (expandedWidth + expandedHeight);
+			coord.x = 0;
+			coord.y = expandedHeight - (p - expandedWidth);
 			pval = 4;
 		}
 	}
 	logo.p = pval;
-
-	switch (logo.p) {
-		case 1:
-		coord.x = p;
-        coord.y = 0;
-		break;
-		case 2:
-		coord.x = expandedWidth;
-        coord.y = p - expandedWidth;
-		break;
-		case 3:
-		coord.x = expandedWidth - p;
-        coord.y = expandedHeight;
-		break;
-		case 4:
-		coord.x = 0;
-        coord.y = expandedHeight - (p - expandedWidth);
-		break;
-		default:
-	}
 
     coord.x = Math.trunc(coord.x - logo.ratio * zoomRatio);
     coord.y = Math.trunc(coord.y - logo.ratio * zoomRatio);
