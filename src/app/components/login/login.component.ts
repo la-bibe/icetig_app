@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
+import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
   login = '';
   pass = '';
 
-  loginErrorMessage = "Bad login";
-  passErrorMessage = "Bad pass";
+  loginErrorMessage = 'Bad login';
+  passErrorMessage = 'Bad pass';
 
   constructor() { }
 
@@ -22,8 +22,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login)))
+    if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login))) {
       this.loginTooltip.open();
+    }
 
     // this.loginTooltip.open();
 
