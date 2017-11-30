@@ -13,16 +13,17 @@ export class DynamicBackgroundComponent implements OnInit, AfterViewInit {
   zoomRatio = 50;
 
   constructor() {
+	  //Get Screen properties
     this.innerHeight = (window.screen.height);
     this.innerWidth = (window.screen.width);
-    if (this.innerWidth < this.innerHeight) {
-      this.zoomRatio = this.innerWidth / 10;
-    } else {
-      this.zoomRatio = this.innerHeight / 10;
-    }
+
+	//Calculate ZoomRatio according to screen size
+    this.zoomRatio = ((this.innerWidth < this.innerHeight) ? this.innerWidth : this.innerHeight) / 10;
   }
 
   ngOnInit() {
+
+	//Generate logos in background (Size interval betwwen 0 and 10)
     this.logoList = new Array(this.createLogoProperties(6),
       this.createLogoProperties(2),
       this.createLogoProperties(3),
@@ -37,67 +38,63 @@ export class DynamicBackgroundComponent implements OnInit, AfterViewInit {
     }
   }
 
-  randomNeg = function () {
-    return (Math.random() < 0.5 ? 1 : -1);
-  };
-
   createLogoProperties = function (ratio) {
-    const logo = {x: 500, y: 300, rotateSpeed: ratio, vx: 500, vy: 300};
+    const logo = {x: '0', y: '0', ratio: ratio, p: 0};
 
-    const x = Math.floor((Math.random() * (this.innerWidth)) - ratio * this.zoomRatio / 2);
-    const y = Math.floor((Math.random() * (this.innerHeight)) - ratio * this.zoomRatio / 2);
+    const x = Math.trunc((Math.random() * (this.innerWidth + ratio * this.zoomRatio)) - ratio * this.zoomRatio);
+    const y = Math.trunc((Math.random() * (this.innerHeight + ratio * this.zoomRatio)) - ratio * this.zoomRatio);
 
-    logo.x = x;
-    logo.y = y;
+    logo.x = x + 'px';
+    logo.y = y + 'px';
     return logo;
   };
 
+  createCoords = function(logo, innerWidth, innerHeight, zoomRatio) {
+    const expandedWidth = innerWidth + logo.ratio * zoomRatio;
+    const expandedHeight = innerHeight + logo.ratio * zoomRatio;
+    let coord = {x: 0, y: 0};
+
+    let p = 0;
+	let pval = logo.p;
+
+	while (logo.p === pval) {
+		p = Math.random() * (expandedWidth + expandedHeight) * 2;
+		if (logo.p != 1 && p < expandedWidth) {
+			coord.x = p;
+			coord.y = 0;
+			pval = 1;
+		} else if (logo.p != 2 && p < expandedWidth + expandedHeight) {
+			coord.x = expandedWidth;
+			coord.y = p - expandedWidth;
+			pval = 2;
+		} else if (logo.p != 3 && p - (expandedWidth + expandedHeight) < expandedWidth) {
+			p = p - (expandedWidth + expandedHeight);
+			coord.x = expandedWidth - p;
+			coord.y = expandedHeight;
+			pval = 3;
+		} else if (logo.p != 4) {
+			p = p - (expandedWidth + expandedHeight);
+			coord.x = 0;
+			coord.y = expandedHeight - (p - expandedWidth);
+			pval = 4;
+		}
+	}
+	logo.p = pval;
+
+    coord.x = Math.trunc(coord.x - logo.ratio * zoomRatio);
+    coord.y = Math.trunc(coord.y - logo.ratio * zoomRatio);
+    return coord;
+  }
+
   newLogoProperties = function (logo, innerWidth, innerHeight, zoomRatio, createCoords) {
 
-    let coord = createCoords(logo, innerWidth, innerHeight, zoomRatio);
-    logo.x = coord.x;
-    logo.y = coord.y;
-  };
-
-  createCoords = function (logo, innerWidth, innerHeight, zoomRatio) {
-    const expandedWidth = innerWidth + logo.rotateSpeed * zoomRatio;
-    const expandedHeight = innerHeight + logo.rotateSpeed * zoomRatio;
-    const coord = {x: 0, y: 0};
-
-    let p = Math.random() * (expandedWidth + expandedHeight) * 2;
-    if (p < (expandedWidth + expandedHeight)) {
-      if (p < expandedWidth) {
-        coord.x = p;
-        coord.y = 0;
-      } else {
-        coord.x = expandedWidth;
-        coord.y = p - expandedWidth;
-      }
-    } else {
-      p = p - (expandedWidth + expandedHeight);
-      if (p < expandedWidth) {
-        coord.x = expandedWidth - p;
-        coord.y = expandedHeight;
-      } else {
-        coord.x = 0;
-        coord.y = expandedHeight - (p - expandedWidth);
-      }
-    }
-
-    coord.x -= (logo.rotateSpeed * zoomRatio);
-    coord.y -= (logo.rotateSpeed * zoomRatio);
-
-    return coord;
+	var coord = createCoords(logo, innerWidth, innerHeight, zoomRatio);
+	logo.x =  coord.x + 'px';
+	logo.y =  coord.y + 'px';
   };
 
   moveLogo = function (elem) {
-    function frame(newLogoProperties, zoomRatio, createCoords, innerWidth, innerHeight) {
-      newLogoProperties(elem, innerWidth, innerHeight, zoomRatio, createCoords);
-    }
-
-   setTimeout(frame, 0, this.newLogoProperties, this.zoomRatio,
-     this.createCoords, this.innerWidth, this.innerHeight);
-    setInterval(frame, elem.rotateSpeed * 2000 + 10000, this.newLogoProperties, this.zoomRatio,
-      this.createCoords, this.innerWidth, this.innerHeight);
+	  setTimeout(this.newLogoProperties, 0, elem, this.innerWidth, this.innerHeight, this.zoomRatio, this.createCoords);
+	  setInterval(this.newLogoProperties, elem.ratio * 2000 + 10000, elem, this.innerWidth, this.innerHeight, this.zoomRatio, this.createCoords);
   };
 }

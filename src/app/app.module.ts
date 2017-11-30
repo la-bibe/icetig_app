@@ -10,6 +10,9 @@ import {FormsModule} from '@angular/forms';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import { LoaderComponent } from './components/loader/loader.component';
 import { DynamicBackgroundComponent } from './components/dynamic-background/dynamic-background.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from '@angular/common/http';
+import {InlineSVGModule} from 'ng-inline-svg';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent}
@@ -28,7 +31,10 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule,
     AngularSvgIconModule,
-    RouterModule.forRoot(routes)
+    NgbModule.forRoot(),
+    RouterModule.forRoot(routes),
+    InlineSVGModule.forRoot({ baseUrl: './assets/' }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
