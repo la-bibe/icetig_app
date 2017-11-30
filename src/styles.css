@@ -3,4 +3,16 @@
   --secondary-color: #282828;
   --tertiary-color: #F4EED7; }
 
+.tooltip {
+  left: auto !important;
+  right: 15px; }
+  .tooltip.bs-tooltip-top[_nghost-c3] .arrow[_ngcontent-c3], .tooltip.bs-tooltip-bottom[_nghost-c3] .arrow[_ngcontent-c3] {
+    left: auto;
+    right: 20%; }
+  .tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before, .tooltip.bs-tooltip-top .arrow::before {
+    border-top-color: var(--primary-color); }
+  .tooltip .tooltip-inner {
+    border-radius: 0;
+    background-color: var(--primary-color); }
+
 /*# sourceMappingURL=styles.css.map */

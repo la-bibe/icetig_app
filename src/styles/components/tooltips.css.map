@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,iDAAkD;EAChD,IAAI,EAAE,IAAI;EACV,KAAK,EAAE,GAAG",
+"sources": ["tootips.scss"],
+"names": [],
+"file": "tootips.css"
+}
