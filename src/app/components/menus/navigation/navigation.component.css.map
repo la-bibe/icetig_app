@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,mBAAoB;EAClB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,gBAAgB,EAAE,OAAO;EACzB,UAAU,EAAE,4DAAsD",
+"sources": ["navigation.component.scss"],
 "names": [],
 "file": "navigation.component.css"
 }

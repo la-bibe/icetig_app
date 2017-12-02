@@ -1,3 +1,7 @@
-
+.navigation-wrapper {
+  width: 250px;
+  height: 200vh;
+  background-color: #eeeeee;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.16), 0 3px 4px rgba(0, 0, 0, 0.16); }
 
 /*# sourceMappingURL=navigation.component.css.map */

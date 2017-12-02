@@ -1,6 +1,9 @@
 @import '../../../../variables';
 
 .quick-access-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 60px;
   width: 100%;
   background-color: var(--secondary-color);
@@ -12,11 +15,12 @@
     vertical-align: middle;
 
     svg {
-      width: 200px;
-      padding-left: 10px;
-      padding-right: 10px;
+      width: 250px;
+      padding-left: 25px;
+      padding-right: 25px;
     }
   }
+
   .quick-access-wrappers {
     display: inline-table;
     height: inherit;
