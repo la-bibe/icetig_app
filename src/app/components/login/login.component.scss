@@ -1,10 +1,11 @@
 @import '../../../styles/components/forms';
+@import '../../../variables';
 
 .login-form-container {
   display: flex;
+  height: 100vh;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 
   .form {
     label {

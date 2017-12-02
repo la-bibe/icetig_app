@@ -13,9 +13,13 @@ import { DynamicBackgroundComponent } from './components/dynamic-background/dyna
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {InlineSVGModule} from 'ng-inline-svg';
+import {AdminComponent} from './components/pages/admin/admin.component';
+import { QuickAccessBarComponent } from './components/menus/quick-access-bar/quick-access-bar.component';
+import { NavigationComponent } from './components/menus/navigation/navigation.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: '', component: AdminComponent}
 ];
 
 
@@ -24,7 +28,10 @@ const routes: Routes = [
     AppComponent,
     LoaderComponent,
     LoginComponent,
-    DynamicBackgroundComponent
+    DynamicBackgroundComponent,
+    QuickAccessBarComponent,
+    NavigationComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
