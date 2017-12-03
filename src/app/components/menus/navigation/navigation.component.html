@@ -1,2 +1,10 @@
-<div class="navigation-wrapper">
+<div class="navigation-background">
 </div>
+<ul class="navigation-wrapper">
+  <li *ngFor="let tab of nav" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+    <a [routerLink]="tab.link">
+      <div [inlineSVG]="tab.svglink"></div>
+      <p>{{tab.name}}</p>
+    </a>
+  </li>
+</ul>
