@@ -1,5 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {ApiService} from "../../services/api.service";
+
 
 @Component({
   selector: 'app-login',
@@ -15,7 +19,8 @@ export class LoginComponent implements OnInit {
   loginErrorMessage = 'Bad login';
   passErrorMessage = 'Bad pass';
 
-  constructor() { }
+  constructor(private http: HttpClient, private apiService: ApiService) {
+  }
 
   ngOnInit() {
   }
@@ -24,10 +29,20 @@ export class LoginComponent implements OnInit {
 
     if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login))) {
       this.loginTooltip.open();
-    }
-
     // this.loginTooltip.open();
 
-    setTimeout(() => {this.loginTooltip.close(); this.passTooltip.close(); }, 2000);
+    let header = `${this.login}:${this.pass}`;
+
+    console.log(environment.apiUrl);
+
+    this.http.get(environment.apiUrl, {
+      headers: new HttpHeaders().set('Authorization', 'Basic $(btoa())')
+    }).subscribe(data => {
+      console.log(data);
+    });
+
+    this.apiService.get('grez');
+
+    //setTimeout(() => {this.loginTooltip.close(); this.passTooltip.close(); }, 2000);
   }
 }

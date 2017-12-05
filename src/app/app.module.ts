@@ -30,6 +30,7 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     AngularSvgIconModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
