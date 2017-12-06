@@ -48,7 +48,7 @@ const routes: Routes = [
     AngularSvgIconModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
-    InlineSVGModule.forRoot({ baseUrl: './assets/' }),
+    InlineSVGModule.forRoot({baseUrl: './assets/'}),
     HttpClientModule
   ],
   providers: [],
