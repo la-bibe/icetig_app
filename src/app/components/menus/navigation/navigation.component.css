@@ -48,25 +48,32 @@
         background-color: var(--primary-color); }
   .navigation-container .width-change {
     text-align: right;
-    margin-right: 4px; }
+    margin-right: 4px;
+    margin-left: 0;
+    width: 100%;
+    transition: all .5s; }
     .navigation-container .width-change button {
       border: 0;
       background: 0;
-      padding: 0; }
+      padding: 0;
+      opacity: 0.3;
+      transition: opacity 0.2s; }
       .navigation-container .width-change button svg {
         width: 25px;
         height: 25px;
         fill: var(--secondary-color);
-        opacity: 0.3;
         transition: all 0.5s; }
+    .navigation-container .width-change button:hover {
+      opacity: 0.5;
+      transition: opacity 0.2s; }
   .navigation-container .close {
-    text-align: center;
-    margin-right: 0;
+    width: 0;
     padding-bottom: 5px;
-    transition: all 0.5s; }
+    margin-left: 20px;
+    transition: all .5s; }
     .navigation-container .close svg {
       transform: rotate(-180deg);
-      transition: all 0.5s; }
+      transition: transform 0.7s; }
   .navigation-container button:focus {
     outline: 0; }
 

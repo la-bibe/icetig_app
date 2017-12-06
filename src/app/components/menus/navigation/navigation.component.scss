@@ -59,31 +59,39 @@
   .width-change {
     text-align: right;
     margin-right: 4px;
+    margin-left: 0;
+    width: 100%;
+    transition: all .5s;
 
     button {
       border: 0;
       background: 0;
       padding: 0;
+      opacity: 0.3;
+      transition: opacity 0.2s;
 
       svg {
         width: 25px;
         height: 25px;
         fill: var(--secondary-color);
-        opacity: 0.3;
         transition: all 0.5s;
       }
+    }
+    button:hover{
+      opacity: 0.5;
+      transition: opacity 0.2s;
     }
   }
 
   .close {
-    text-align: center;
-    margin-right: 0;
+    width: 0;
     padding-bottom: 5px;
-    transition: all 0.5s;
+    margin-left: 20px;
+    transition: all .5s;
 
     svg {
       transform: rotate(-180deg);
-      transition: all 0.5s;
+      transition: transform 0.7s;
     }
   }
 
