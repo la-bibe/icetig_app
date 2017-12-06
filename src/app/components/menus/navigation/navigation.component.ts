@@ -8,6 +8,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   nav = new Array();
+  navopen = true;
 
   constructor() {
     this.nav = [this.newTab(`DashBoard`, 'icons/nav-dashboard.svg', '/'),
@@ -22,5 +23,9 @@ export class NavigationComponent implements OnInit {
 
   newTab(name, svg, link) {
     return {name: name, svglink: svg, link: link};
+  }
+
+  changeWidth = function(){
+    this.navopen = !this.navopen;
   }
 }
