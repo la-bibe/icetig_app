@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login))) {
+    if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login)))
       this.loginTooltip.open();
     // this.loginTooltip.open();
 

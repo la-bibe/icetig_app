@@ -13,6 +13,7 @@ import { DynamicBackgroundComponent } from './components/dynamic-background/dyna
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {InlineSVGModule} from 'ng-inline-svg';
+import {ApiService} from "./services/api.service";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent}
@@ -37,7 +38,7 @@ const routes: Routes = [
     InlineSVGModule.forRoot({ baseUrl: './assets/' }),
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

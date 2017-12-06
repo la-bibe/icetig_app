@@ -11,16 +11,13 @@ export class ApiService {
 
   static getHeaders(method, path, data) {
     const algo = 'sha512';
-    const hash = crypto.HmacSHA512('sha512', 'foo-bar-123');
-//.AES.encrypt(`${method.upper}${path}${Md5.hashStr(data)}${Date.now()}`, 'foo-bar-123');
-    console.log(hash);
-    console.log(`HMAC algo=${algo},hash=${hash},time=${Date.now()}`);
+    const hash = crypto.HmacSHA512(`${method.toUpperCase()}${path}${crypto.MD5(data)}${Date.now()}`, 'foo-bar-123');
     return `HMAC algo=${algo},hash=${hash},time=${Date.now()}`
   }
 
 
   get(path) {
-    console.log(ApiService.getHeaders('POST', 'data', `{"glossary":{"title":"example glossary","GlossDiv":{"title":"S","ID":"SGML",}}}}`));
+    console.log(ApiService.getHeaders('POST', '/data', `{"glossary":{"title":"example glossary","GlossDiv":{"title":"S","ID":"SGML",}}}}`));
   }
 
 }
