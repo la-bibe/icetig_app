@@ -10,7 +10,7 @@
   height: 60px;
   width: 100%;
   background-color: var(--secondary-color);
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.16), 0 3px 4px rgba(0, 0, 0, 0.23); }
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23); }
   .quick-access-bar .pedago-title {
     display: inline-flex;
     height: inherit;

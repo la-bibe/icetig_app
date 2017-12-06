@@ -11,7 +11,8 @@
   background-color: var(--secondary-color);
 
   > svg {
+    opacity: 0.03;
     position: absolute;
-	transition: all 10s;
+	  transition: all 10s;
   }
 }

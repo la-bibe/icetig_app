@@ -1,10 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import { slideInOutAnimation } from './login.animation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [slideInOutAnimation],
+  host: { '[@slideInOutAnimation]': '' }
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginTooltip') loginTooltip: NgbTooltip;

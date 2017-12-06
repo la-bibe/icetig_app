@@ -18,6 +18,7 @@ import { QuickAccessBarComponent } from './components/menus/quick-access-bar/qui
 import { NavigationComponent } from './components/menus/navigation/navigation.component';
 import { TigComponent } from './components/pages/tig/tig.component';
 import { ShiftComponent } from './components/pages/shift/shift.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -49,7 +50,9 @@ const routes: Routes = [
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
     InlineSVGModule.forRoot({baseUrl: './assets/'}),
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
