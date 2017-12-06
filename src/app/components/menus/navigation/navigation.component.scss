@@ -51,9 +51,9 @@
       svg {
         fill: var(--tertiary-color);
       }
-        &:hover {
-          background-color: var(--primary-color);
-        }
+      &:hover {
+        background-color: var(--primary-color);
+      }
     }
   }
   .width-change {
@@ -75,9 +75,15 @@
     }
   }
 
-  .close svg {
-    transform: rotate(-180deg);
-    transition: all 0.5s;
+  .close {
+    text-align: center;
+    margin-right: 0;
+    padding-bottom: 5px;
+
+    svg {
+      transform: rotate(-180deg);
+      transition: all 0.5s;
+    }
   }
 
   button:focus {outline:0;}
