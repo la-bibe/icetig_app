@@ -27,6 +27,7 @@
 [type="checkbox"]:not(:checked) + label:after,
 [type="checkbox"]:checked + label:after {
   content: '✔';
+  font-family: 'FontAwesome';
   position: absolute;
   top: .15em;
   left: 0.18em;
@@ -60,5 +61,3 @@
 /* hover style just for information */
 label:hover:before {
   border: 2px solid #00ADB5 !important; }
-
-/*# sourceMappingURL=forms.css.map */
