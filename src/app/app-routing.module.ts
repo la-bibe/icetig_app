@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "./components/login/login.component";
+import {LoginComponent} from "./components/pages/login/login.component";
 import {AdminComponent} from "./components/pages/admin/admin.component";
 import {ShiftComponent} from "./components/pages/shift/shift.component";
 import {TigComponent} from "./components/pages/tig/tig.component";

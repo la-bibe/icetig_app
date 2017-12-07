@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './components/pages/login/login.component';
 import {AppRoutingModule} from './/app-routing.module';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
@@ -23,6 +23,8 @@ import {routes} from "./app-routing.module";
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./services/auth.service";
 import {LoginGuard} from "./guards/login.guard";
+
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import {LoginGuard} from "./guards/login.guard";
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
     InlineSVGModule.forRoot({baseUrl: './assets/'}),
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ApiService,

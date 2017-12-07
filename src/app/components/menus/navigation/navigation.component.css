@@ -1,45 +1,80 @@
-.navigation-background {
-  width: 250px;
-  height: 100vh;
-  background-color: #eeeeee;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.16), 0 3px 4px rgba(0, 0, 0, 0.16); }
+:root {
+  --primary-color: #00ADB5;
+  --secondary-color: #282828;
+  --tertiary-color: #F4EED7; }
 
-.navigation-wrapper {
+.navigation-container {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   top: 60px;
   left: 0;
-  padding: 0; }
-  .navigation-wrapper li {
+  height: calc(100vh - 60px);
+  width: 250px;
+  overflow: hidden;
+  background-color: #eeeeee;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.16);
+  transition: all 0.5s; }
+  .navigation-container ul {
+    padding: 0; }
+  .navigation-container li {
     list-style-type: none;
     margin: 0; }
-    .navigation-wrapper li a {
+    .navigation-container li a {
       display: flex;
       align-items: center;
       justify-content: flex-start;
       height: 50px;
       width: 250px;
       color: #000; }
-      .navigation-wrapper li a:hover {
+      .navigation-container li a:hover {
         background-color: #e0e0e0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        width: 255px;
         text-decoration: none; }
-      .navigation-wrapper li a > * {
+      .navigation-container li a > * {
         margin: auto 0; }
-      .navigation-wrapper li a svg {
+      .navigation-container li a svg {
         margin-left: 20px;
         margin-right: 20px;
         vertical-align: middle;
         width: 25px; }
-    .navigation-wrapper li.active a {
+    .navigation-container li.active a {
       background-color: var(--primary-color);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      width: 255px;
       text-decoration: none;
       color: var(--tertiary-color); }
-      .navigation-wrapper li.active a svg {
+      .navigation-container li.active a svg {
         fill: var(--tertiary-color); }
-      .navigation-wrapper li.active a:hover {
+      .navigation-container li.active a:hover {
         background-color: var(--primary-color); }
+  .navigation-container .width-change {
+    text-align: right;
+    margin-right: 4px;
+    margin-left: 0;
+    width: 100%;
+    transition: all .5s; }
+    .navigation-container .width-change button {
+      border: 0;
+      background: 0;
+      padding: 0;
+      opacity: 0.3;
+      transition: opacity 0.2s; }
+      .navigation-container .width-change button svg {
+        width: 25px;
+        height: 25px;
+        fill: var(--secondary-color);
+        transition: all 0.5s; }
+    .navigation-container .width-change button:hover {
+      opacity: 0.5;
+      transition: opacity 0.2s; }
+  .navigation-container .close {
+    width: 0;
+    padding-bottom: 5px;
+    margin-left: 20px;
+    transition: all .5s; }
+    .navigation-container .close svg {
+      transform: rotate(-180deg);
+      transition: transform 0.7s; }
+  .navigation-container button:focus {
+    outline: 0; }
 
 /*# sourceMappingURL=navigation.component.css.map */

@@ -1,16 +1,18 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
+import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import {slideInOutAnimation} from './login.animation';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {ApiService} from "../../services/api.service";
+import {environment} from "../../../../environments/environment";
 import {Router} from "@angular/router";
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../../services/auth.service";
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [slideInOutAnimation],
+  host: {'[@slideInOutAnimation]': ''}
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginTooltip') loginTooltip: NgbTooltip;
