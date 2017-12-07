@@ -3,6 +3,8 @@ import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {ApiService} from "../../services/api.service";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
   loginErrorMessage = 'Bad login';
   passErrorMessage = 'Bad pass';
 
-  constructor(private http: HttpClient, private apiService: ApiService) {
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -27,22 +29,22 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login)))
-      this.loginTooltip.open();
-    // this.loginTooltip.open();
+    //if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login)))
+    //this.loginTooltip.open();
 
-    let header = `${this.login}:${this.pass}`;
+    let login = `${this.login}:${this.pass}`;
 
-    console.log(environment.apiUrl);
-
-    this.http.get(environment.apiUrl, {
-      headers: new HttpHeaders().set('Authorization', 'Basic $(btoa())')
+    this.http.get(environment.apiUrl + '/security/access', {
+      headers: new HttpHeaders().set('Authorization', `Basic ${btoa(login)}`), withCredentials: true
     }).subscribe(data => {
-      console.log(data);
+      window.localStorage.setItem('token', (data as ILoginResponse).data.signatureToken);
+      this.router.navigateByUrl('');
     });
+  }
+}
 
-    this.apiService.get('grez');
-
-    //setTimeout(() => {this.loginTooltip.close(); this.passTooltip.close(); }, 2000);
+export interface ILoginResponse {
+  data: {
+    signatureToken: string;
   }
 }

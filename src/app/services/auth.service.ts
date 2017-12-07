@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class BganimationService {
+export class AuthService {
+  redirectUrl: string;
 
   constructor() { }
-
 }

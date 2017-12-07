@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.bienveillance.ninja/security/access'
+  apiUrl: 'https://api.bienveillance.ninja'
 };

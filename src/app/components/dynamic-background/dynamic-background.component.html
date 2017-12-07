@@ -1,4 +1,4 @@
-<div class="background">
+<div class="background" [ngStyle]="{'height': height, 'width': width}">
   <svg *ngFor="let logo of logoList" attr.width="{{logo.ratio * zoomRatio}}" attr.height="{{logo.ratio * zoomRatio}}" class="background-logo" viewBox="0 0 500 500" x="0px" y="0px"
   [ngStyle]="{'top': logo.y, 'left': logo.x,'transition': 'all ' + (logo.ratio * 2 + 10) + 's linear'}">
     <defs>

@@ -1,0 +1,70 @@
+@import '../../../../variables';
+
+.quick-access-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-color: var(--secondary-color);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
+
+  .pedago-title {
+    display: inline-flex;
+    height: inherit;
+    vertical-align: middle;
+
+    svg {
+      width: 250px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+
+  .quick-access-wrappers {
+    display: inline-table;
+    height: inherit;
+    float: right;
+    vertical-align: middle;
+
+    > * {
+      display: table-cell;
+      height: inherit;
+      padding-left: 20px;
+      padding-right: 20px;
+      vertical-align: middle;
+    }
+
+    svg {
+      height: 60%;
+      vertical-align: middle;
+      fill: #fff;
+
+      &.gear {
+        opacity: 0.3;
+      }
+    }
+    .options {
+      opacity: 0.3;
+    }
+
+    .profile {
+      height: inherit;
+      > * {
+        display: inline-block;
+      }
+      img {
+        height: 80%;
+        border-left: var(--primary-color) solid 4px;
+        box-sizing: border-box;
+      }
+      p {
+        margin: 0 auto;
+        vertical-align: middle;
+        color: #fff;
+        opacity: 0.7;
+        line-height: 130%;
+      }
+    }
+  }
+}
