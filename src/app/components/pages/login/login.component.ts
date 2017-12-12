@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {slideInOutAnimation} from './login.animation';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
@@ -15,13 +14,10 @@ import {AuthService} from "../../../services/auth.service";
   host: {'[@slideInOutAnimation]': ''}
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('loginTooltip') loginTooltip: NgbTooltip;
-  @ViewChild('passTooltip') passTooltip: NgbTooltip;
   login = '';
   pass = '';
 
-  loginErrorMessage = 'Bad login';
-  passErrorMessage = 'Bad pass';
+  badCredentials = false;
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
   }
@@ -30,9 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-
-    //if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login)))
-    //this.loginTooltip.open();
 
     let login = `${this.login}:${this.pass}`;
 
@@ -44,8 +37,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('');
       })
       .catch(error => {
-        console.log('Error on subimit', error);
-
+        this.badCredentials = true;
+        setTimeout(() => { this.badCredentials = false }, 3000);
       })
   }
 }

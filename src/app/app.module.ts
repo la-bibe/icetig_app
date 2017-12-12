@@ -52,6 +52,7 @@ import {MatTooltipModule} from "@angular/material";
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
     InlineSVGModule.forRoot({baseUrl: './assets/'}),
+    NgbModule.forRoot(),
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule

@@ -16,9 +16,10 @@
 
         <form class="form">
           <label>Login</label>
-          <input type="text" name="login" required [(ngModel)]="login" matTooltip="Tooltip!">
+          <input type="text" name="login" required [(ngModel)]="login">
           <label>Password</label>
-          <input type="password" name="pass" required [(ngModel)]="pass" matTooltip="Tooltip!">
+          <input type="password" name="pass" required [(ngModel)]="pass">
+          <ngb-alert *ngIf="badCredentials">Mauvais identifiants</ngb-alert>
           <div class="submit-wrapper">
             <label class="checkbox-container">Remember me
               <input type="checkbox" checked="checked">
