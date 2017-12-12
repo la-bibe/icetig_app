@@ -13,11 +13,11 @@ import {LoginGuard} from './guards/login.guard';
 export class AppRoutingModule {}
 
 export const routes: Routes = [
-  {path: 'login', component: LoginComponent/*, canActivate: [LoginGuard]*/},
-  {path: '', component: AdminComponent/*, canActivate: [AuthGuard]*/,
+  {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
+  {path: '', component: AdminComponent, canActivate: [AuthGuard],
     children: [
-      {path: 'shifts', component: ShiftComponent/*, canActivate: [AuthGuard]*/},
-      {path: 'tig', component: TigComponent/*, canActivate: [AuthGuard]*/}
+      {path: 'shifts', component: ShiftComponent, canActivate: [AuthGuard]},
+      {path: 'tig', component: TigComponent, canActivate: [AuthGuard]}
     ]},
-  {path: 'admin', component: AdminComponent/*, canActivate: [AuthGuard]*/}
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]}
 ];
