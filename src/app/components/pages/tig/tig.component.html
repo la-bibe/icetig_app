@@ -12,13 +12,13 @@
     <td class="expand">Reason</td>
     <td class="shrink">Assigned by</td>
     <td class="shrink">Status</td>
-    <td class="expand">Work</td>
-    <td class="shrink">On</td>
+    <td class="expand work">Work</td>
+    <td class="shrink end-date">On</td>
     <td class="shrink"></td>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let a of fakeArray; let i = index">
+  <tr *ngFor="let tig of fakeArray; let i = index">
     <td class="shrink checkmark-tig">
       <div class="checkmark">
         <input id="checkbox-{{i}}" type="checkbox">
@@ -49,11 +49,11 @@
       </div>
     </td>
     <td class="shrink status"><span class="label" [style.backgroundColor]="statusColors[tig.status]">{{tig.status}}</span></td>
-    <td class="expand">
+    <td class="expand work">
       <p class="collapse collapseTig-{{i}}" aria-expanded="false">{{tig.work}}</p>
       <a role="button" class="collapsed" data-toggle="collapse" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}"></a>
     </td>
-    <td class="shrink"><span>{{tig.endDate.start + ((tig.endDate.end === null) ? '' : ' to ' + tig.endDate.end) }}</span></td>
+    <td class="shrink end-date"><span [innerHTML]="tig.endDate.start + ((tig.endDate.end === null) ? '' : '<br>' + tig.endDate.end)"></span></td>
     <td class="shrink more"><div [inlineSVG]="'/icons/more.svg'"></div></td>
   </tr>
   </tbody>
