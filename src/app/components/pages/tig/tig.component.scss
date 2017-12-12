@@ -39,11 +39,16 @@ table.tig-list {
 
         &.profile .profile-wrapper {
           display: flex;
-          img {
-            border-radius: 25px;
+
+          .cropcircle{
+            width: 50px;
             height: 50px;
+            border-radius: 100%;
+            background: #eee no-repeat center;
+            background-size: cover;
             margin-right: 5px;
           }
+
           .infos {
             display: flex;
             flex-direction: column;

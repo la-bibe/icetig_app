@@ -27,7 +27,7 @@
     </td>
     <td class="shrink profile assigned">
       <div class="profile-wrapper">
-      <img alt="assigned profile picture" src="{{tig.assigned.avatar}}"/>
+        <div class="cropcircle" [style.backgroundImage]="'url('+tig.assigned.avatar+')'"></div>
         <div class="infos">
           <p class="name">{{tig.assigned.firstName}} {{tig.assigned.lastName}}</p>
           <p class="mail">{{tig.assigned.mail}}</p>
@@ -41,7 +41,7 @@
     </td>
     <td class="shrink profile allocator">
       <div class="profile-wrapper">
-      <img alt="assigned profile picture" src="{{tig.allocator.avatar}}"/>
+        <div class="cropcircle" [style.backgroundImage]="'url('+tig.allocator.avatar+')'"></div>
         <div class="infos">
           <p class="name">{{tig.allocator.firstName}} {{tig.allocator.lastName}}</p>
           <p class="mail">{{tig.allocator.mail}}</p>
