@@ -1,0 +1,114 @@
+@import '../../../../styles/components/forms.css';
+
+table.tig-list {
+  width: 100%;
+  border-collapse:separate;
+  border-spacing: 0 20px;
+
+  td {
+    padding-left: 15px;
+    padding-right: 15px;
+    white-space: nowrap;
+
+    &.expand {width: 50%;}
+  }
+  thead {
+    color: #959595;
+    font-size: 18px;
+  }
+
+  tbody {
+    p {
+      margin: 0;
+      white-space: normal;
+    }
+    tr {
+      font-size: 16px;
+      background-color: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
+      height: 70px;
+
+      td {
+
+        &:first-child {
+          border-radius: 5px 0 0 5px;
+        }
+        &:last-child {
+          border-radius: 0 5px 5px 0;
+        }
+
+        &.profile .profile-wrapper {
+          display: flex;
+          img {
+            border-radius: 25px;
+            height: 50px;
+            margin-right: 5px;
+          }
+          .infos {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            vertical-align: middle;
+            p {
+              &.mail {
+                font-size: 10px;
+                color: #959595;
+              }
+            }
+          }
+        }
+
+        &.status {
+          span {
+            display: inline-block;
+            padding: 2px 2px;
+            color: #fff;
+            font-size: 15px;
+            vertical-align: baseline;
+            background-color: #999;
+            border-radius: 5px;
+            min-width: 80px;
+            text-align: center;
+          }
+        }
+
+        &.expand {
+          p.collapse {
+            display: block;
+            overflow: hidden;
+          }
+
+          p:not(.show) {
+            height: 22px;
+          }
+
+          a.collapsed:after  {
+            content: '+ Show More';
+          }
+
+          a:not(.collapsed):after {
+            content: '-  Show Less';
+          }
+
+          a {
+            font-size: 14px;
+            color: #959595;
+          }
+
+/*          .collapse.show {
+            display: inline-block;
+          }*/
+        }
+
+        &.more {
+          cursor: pointer;
+
+          svg {
+            height: 25px;
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
+}

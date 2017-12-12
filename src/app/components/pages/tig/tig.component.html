@@ -1,3 +1,60 @@
-<p>
-  tig works!
-</p>
+<table class="tig-list">
+  <thead>
+  <tr>
+    <td class="shrink">
+      <label class="checkbox-container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    </td>
+    <td class="shrink">Student</td>
+    <td class="shrink">Grant date</td>
+    <td class="expand">Reason</td>
+    <td class="shrink">Assigned by</td>
+    <td class="shrink">Status</td>
+    <td class="expand">Work</td>
+    <td class="shrink">On</td>
+    <td class="shrink"></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let a of fakeArray; let i = index">
+    <td class="shrink checkmark-tig">
+      <div class="checkmark">
+        <input id="checkbox-{{i}}" type="checkbox">
+        <label for="checkbox-{{i}}"></label>
+      </div>
+    </td>
+    <td class="shrink profile assigned">
+      <div class="profile-wrapper">
+      <img alt="assigned profile picture" src="{{tig.assigned.avatar}}"/>
+        <div class="infos">
+          <p class="name">{{tig.assigned.firstName}} {{tig.assigned.lastName}}</p>
+          <p class="mail">{{tig.assigned.mail}}</p>
+        </div>
+      </div>
+    </td>
+    <td class="shrink date"><span>{{tig.grantDate}}</span></td>
+    <td class="expand reason" >
+      <p class="collapse collapseTig-{{i}}" aria-expanded="false">{{tig.reason}}</p>
+      <a role="button" class="collapsed" data-toggle="collapse" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}"></a>
+    </td>
+    <td class="shrink profile allocator">
+      <div class="profile-wrapper">
+      <img alt="assigned profile picture" src="{{tig.allocator.avatar}}"/>
+        <div class="infos">
+          <p class="name">{{tig.allocator.firstName}} {{tig.allocator.lastName}}</p>
+          <p class="mail">{{tig.allocator.mail}}</p>
+        </div>
+      </div>
+    </td>
+    <td class="shrink status"><span class="label" [style.backgroundColor]="statusColors[tig.status]">{{tig.status}}</span></td>
+    <td class="expand">
+      <p class="collapse collapseTig-{{i}}" aria-expanded="false">{{tig.work}}</p>
+      <a role="button" class="collapsed" data-toggle="collapse" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}"></a>
+    </td>
+    <td class="shrink"><span>{{tig.endDate.start + ((tig.endDate.end === null) ? '' : ' to ' + tig.endDate.end) }}</span></td>
+    <td class="shrink more"><div [inlineSVG]="'/icons/more.svg'"></div></td>
+  </tr>
+  </tbody>
+</table>
