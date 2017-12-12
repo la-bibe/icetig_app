@@ -68,7 +68,9 @@
       background: 0;
       padding: 0;
       opacity: 0.3;
+      margin-right: 4px;
       transition: opacity 0.2s;
+      cursor: pointer;
 
       svg {
         width: 25px;

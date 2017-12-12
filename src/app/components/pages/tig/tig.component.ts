@@ -10,6 +10,7 @@ export class TigComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('tig loaded');
   }
 
 }

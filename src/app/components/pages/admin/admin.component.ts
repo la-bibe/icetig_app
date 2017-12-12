@@ -7,10 +7,16 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+    navBarWidth = '250px';
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+
+    }
+
+    onNavSizeChange(size) {
+        this.navBarWidth = size;
+    }
 
 }
