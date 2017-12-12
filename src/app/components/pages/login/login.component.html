@@ -16,9 +16,9 @@
 
         <form class="form">
           <label>Login</label>
-          <input type="text" name="login" required [(ngModel)]="login" [ngbTooltip]="loginErrorMessage" #loginTooltip="ngbTooltip" >
+          <input type="text" name="login" required [(ngModel)]="login" matTooltip="Tooltip!">
           <label>Password</label>
-          <input type="password" name="pass" required [(ngModel)]="pass" [ngbTooltip]="passErrorMessage" #passTooltip="ngbTooltip" >
+          <input type="password" name="pass" required [(ngModel)]="pass" matTooltip="Tooltip!">
           <div class="submit-wrapper">
             <label class="checkbox-container">Remember me
               <input type="checkbox" checked="checked">

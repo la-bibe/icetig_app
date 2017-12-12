@@ -6,6 +6,7 @@ import {ShiftComponent} from "./components/pages/shift/shift.component";
 import {TigComponent} from "./components/pages/tig/tig.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {LoginGuard} from "./guards/login.guard";
+import {SessionGuard} from "./guards/session.guard";
 
 @NgModule({
   exports: [ RouterModule ]
@@ -13,11 +14,11 @@ import {LoginGuard} from "./guards/login.guard";
 export class AppRoutingModule {}
 
 export const routes: Routes = [
-  {path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
-  {path: '', component: AdminComponent, canActivate: [AuthGuard],
+  {path: 'login', component: LoginComponent, canActivate: [SessionGuard, LoginGuard]},
+  {path: '', component: AdminComponent, canActivate: [SessionGuard, AuthGuard],
     children: [
-      {path: 'shifts', component: ShiftComponent, canActivate: [AuthGuard]},
-      {path: 'tig', component: TigComponent, canActivate: [AuthGuard]}
+      {path: 'shifts', component: ShiftComponent, canActivate: [SessionGuard, AuthGuard]},
+      {path: 'tig', component: TigComponent, canActivate: [SessionGuard, AuthGuard]}
     ]},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]}
+  {path: 'admin', component: AdminComponent, canActivate: [SessionGuard, AuthGuard]}
 ];

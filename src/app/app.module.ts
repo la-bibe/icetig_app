@@ -24,7 +24,9 @@ import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./services/auth.service";
 import {LoginGuard} from "./guards/login.guard";
 
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {SessionGuard} from "./guards/session.guard";
+import {MatTooltipModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -42,6 +44,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NoopAnimationsModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
     HttpClientModule,
     AngularSvgIconModule,
     NgbModule.forRoot(),
@@ -55,7 +60,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ApiService,
     AuthService,
     AuthGuard,
-    LoginGuard
+    LoginGuard,
+    SessionGuard
   ],
   bootstrap: [AppComponent]
 })

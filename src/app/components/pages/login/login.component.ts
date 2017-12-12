@@ -38,15 +38,21 @@ export class LoginComponent implements OnInit {
 
     this.http.get(environment.apiUrl + '/security/access', {
       headers: new HttpHeaders().set('Authorization', `Basic ${btoa(login)}`), withCredentials: true
-    }).subscribe(data => {
-      window.localStorage.setItem('token', (data as ILoginResponse).data.signatureToken);
-      this.router.navigateByUrl('');
-    });
+    }).toPromise()
+      .then(result => {
+        window.localStorage.setItem('session', JSON.stringify((result as ILoginResponse).data));
+        this.router.navigateByUrl('');
+      })
+      .catch(error => {
+        console.log('Error on subimit', error);
+
+      })
   }
 }
 
 export interface ILoginResponse {
   data: {
+    expirationDate: Date;
     signatureToken: string;
   }
 }
