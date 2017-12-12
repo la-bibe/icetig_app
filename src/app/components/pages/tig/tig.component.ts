@@ -13,18 +13,6 @@ export class TigComponent implements OnInit {
   fakeArray = '';
     /* En attendant l'api */
   statusList = ['Assigned', 'In progress', 'Done', 'Not done'];
-  tig = {
-      assigned : {firstName : 'John', lastName : 'Doe', mail : 'john.doe@epitech.eu', avatar : '/assets/avatar.jpg'},
-      grantDate : '16/07/1998',
-      reason : 'Bacon ipsum dolor amet doner picanha tri-tip biltong leberkas salami meatball tongue filet' +
-      'mignon landjaeger tail. Kielbasa salami tenderloin picanha spare ribs, beef ribs strip steak jerky cow.' +
-      'Pork chop chicken ham hock beef ribs turkey jerky.',
-      allocator : {firstName : 'Fantin', lastName : 'Bibas', mail : 'fantin.bibas@epitech.eu', avatar : '/assets/fantin.jpg'},
-      status : this.statusList[Math.floor(Math.random() * this.statusList.length)],
-      work : ' Shoulder beef capicola doner, tongue tail sausage short ribs andouille.' +
-      'Rump frankfurter landjaeger t-bone, kielbasa doner ham hock shankle venison.',
-      endDate : {start : '16/07/1998', end : '16/07/1998'}
-    };
   statusColors = {};
 
   constructor(private http: Http) {

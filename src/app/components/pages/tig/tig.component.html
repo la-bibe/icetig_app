@@ -1,4 +1,4 @@
-<table class="tig-list">
+<table id="tig-table">
   <thead>
   <tr>
     <td class="shrink">
@@ -17,7 +17,7 @@
     <td class="shrink"></td>
   </tr>
   </thead>
-  <tbody>
+  <tbody id="tiglist">
   <tr *ngFor="let tig of fakeArray; let i = index">
     <td class="shrink checkmark-tig">
       <div class="checkmark">
@@ -34,11 +34,11 @@
         </div>
       </div>
     </td>
-    <td class="shrink date"><span>{{tig.grantDate}}</span></td>
+    <td class="shrink date"><p>{{tig.grantDate}}</p></td>
     <td class="expand reason" >
-      <p class="collapse collapseTig-{{i}}" aria-expanded="false">{{tig.reason}}</p>
-      <a role="button" class="collapsed" data-toggle="collapse" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}"></a>
-    </td>
+      <a role="button" class="collapse" data-toggle="collapse" data-parent="#tiglist" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}">
+        <p class="collapseTig-{{i}} collapsed">{{tig.reason}}</p>
+      </a>  </td>
     <td class="shrink profile allocator">
       <div class="profile-wrapper">
         <div class="cropcircle" [style.backgroundImage]="'url('+tig.allocator.avatar+')'"></div>
@@ -50,10 +50,11 @@
     </td>
     <td class="shrink status"><span class="label" [style.backgroundColor]="statusColors[tig.status]">{{tig.status}}</span></td>
     <td class="expand work">
-      <p class="collapse collapseTig-{{i}}" aria-expanded="false">{{tig.work}}</p>
-      <a role="button" class="collapsed" data-toggle="collapse" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}"></a>
+      <a role="button" class="collapse" data-toggle="collapse" data-parent="#tiglist" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}">
+        <p class="collapseTig-{{i}} collapsed">{{tig.work}}</p>
+      </a>
     </td>
-    <td class="shrink end-date"><span [innerHTML]="tig.endDate.start + ((tig.endDate.end === null) ? '' : '<br>' + tig.endDate.end)"></span></td>
+    <td class="shrink end-date"><p [innerHTML]="tig.endDate.start + ((tig.endDate.end === null) ? '' : '<br>' + tig.endDate.end)"></p></td>
     <td class="shrink more"><div [inlineSVG]="'/icons/more.svg'"></div></td>
   </tr>
   </tbody>

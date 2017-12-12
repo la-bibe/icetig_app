@@ -1,11 +1,10 @@
 @import '../../../../styles/components/forms.css';
 
-table.tig-list {
+table#tig-table {
   width: 100%;
   border-collapse:separate;
   border-spacing: 0 20px;
-
-  td {
+ td {
     padding-left: 15px;
     padding-right: 15px;
     white-space: nowrap;
@@ -29,6 +28,17 @@ table.tig-list {
       height: 70px;
 
       td {
+        vertical-align: top;
+        transform: translateY(35px);
+
+        a {
+          display: block;
+        }
+
+        > * {
+          transform: translateY(-50%);
+          transition: all 0.5s ease;
+        }
 
         &:first-child {
           border-radius: 5px 0 0 5px;
@@ -78,8 +88,9 @@ table.tig-list {
         }
 
         &.expand {
-          p.collapse {
+          p {
             display: block;
+            text-overflow: ellipsis;
             overflow: hidden;
           }
 
@@ -87,22 +98,12 @@ table.tig-list {
             height: 22px;
           }
 
-          a.collapsed:after  {
-            content: '+ Show More';
+          a{
+            transform: translateY(-12px);
+            text-decoration: none;
+            color: #000;
+            padding-bottom: 35px;
           }
-
-          a:not(.collapsed):after {
-            content: '-  Show Less';
-          }
-
-          a {
-            font-size: 14px;
-            color: #959595;
-          }
-
-/*          .collapse.show {
-            display: inline-block;
-          }*/
         }
 
         &.more {
@@ -119,7 +120,7 @@ table.tig-list {
 }
 
 @media screen and (max-width: 1500px) {
-  table.tig-list tbody tr td {
+  table#tig-table tbody tr td {
     &.profile .profile-wrapper {
       .cropcircle, .infos p.mail {
         display: none;
@@ -129,8 +130,8 @@ table.tig-list {
 }
 
 @media screen and (max-width: 1280px) {
-  table.tig-list tbody tr td,
-  table.tig-list thead tr td{
+  table#tig-table tbody tr td,
+  table#tig-table thead tr td{
     &.work, &.end-date {
       display: none;
     }
