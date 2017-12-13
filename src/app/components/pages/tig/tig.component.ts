@@ -28,8 +28,7 @@ export class TigComponent implements OnInit {
   public getJSON(): Observable<any> {
     console.log('loading');
     return this.http.get('/assets/tig.json')
-      .map((res: any) => res.json())
-      .catch((error : any) => console.log(error));
+      .map((res: any) => res.json());
   }
 
   ngOnInit() {

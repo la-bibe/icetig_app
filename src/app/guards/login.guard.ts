@@ -8,10 +8,8 @@ export class LoginGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (!window.localStorage.getItem('token'))
+    if (!window.localStorage.getItem('session'))
       return true;
-
-    console.log('loloo');
     this.router.navigate(['']);
     return false;
   }

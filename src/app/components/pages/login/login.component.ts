@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {slideInOutAnimation} from './login.animation';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
@@ -15,13 +14,11 @@ import {AuthService} from "../../../services/auth.service";
   host: {'[@slideInOutAnimation]': ''}
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('loginTooltip') loginTooltip: NgbTooltip;
-  @ViewChild('passTooltip') passTooltip: NgbTooltip;
-  login = '';
-  pass = '';
+  login: string;
+  pass: string;
+  remember: boolean;
 
-  loginErrorMessage = 'Bad login';
-  passErrorMessage = 'Bad pass';
+  badCredentials = false;
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
   }
@@ -31,22 +28,26 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    //if (!(new RegExp('^[a-zA-Z-]+[0-9]?\.[a-zA-Z-]+@epitech\.eu$').test(this.login)))
-    //this.loginTooltip.open();
+    let credentials = `${this.login}:${this.pass}`;
+    let remember = `?stay_connected=${(!this.remember) ? 1 : 0}`;
 
-    let login = `${this.login}:${this.pass}`;
-
-    this.http.get(environment.apiUrl + '/security/access', {
-      headers: new HttpHeaders().set('Authorization', `Basic ${btoa(login)}`), withCredentials: true
-    }).subscribe(data => {
-      window.localStorage.setItem('token', (data as ILoginResponse).data.signatureToken);
-      this.router.navigateByUrl('');
-    });
+    this.http.get(environment.apiUrl + '/security/access' + remember, {
+      headers: new HttpHeaders().set('Authorization', `Basic ${btoa(credentials)}`), withCredentials: true
+    }).toPromise()
+      .then(result => {
+        window.localStorage.setItem('session', JSON.stringify((result as ILoginResponse).data));
+        this.router.navigateByUrl('');
+      })
+      .catch(error => {
+        this.badCredentials = true;
+        setTimeout(() => { this.badCredentials = false }, 3000);
+      })
   }
 }
 
 export interface ILoginResponse {
   data: {
+    expirationDate: Date;
     signatureToken: string;
   }
 }

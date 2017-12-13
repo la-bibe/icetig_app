@@ -18,13 +18,14 @@ import {QuickAccessBarComponent} from './components/menus/quick-access-bar/quick
 import {NavigationComponent} from './components/menus/navigation/navigation.component';
 import {TigComponent} from './components/pages/tig/tig.component';
 import {ShiftComponent} from './components/pages/shift/shift.component';
-import {ApiService} from "./services/api.service";
-import {routes} from "./app-routing.module";
-import {AuthGuard} from "./guards/auth.guard";
-import {AuthService} from "./services/auth.service";
-import {LoginGuard} from "./guards/login.guard";
+import {ApiService} from './services/api.service';
+import {routes} from './app-routing.module';
+import {AuthGuard} from './guards/auth.guard';
+import {AuthService} from './services/auth.service';
+import {LoginGuard} from './guards/login.guard';
 
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {SessionGuard} from './guards/session.guard';
 
 @NgModule({
   declarations: [
@@ -42,11 +43,14 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NoopAnimationsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AngularSvgIconModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
     InlineSVGModule.forRoot({baseUrl: './assets/'}),
+    NgbModule.forRoot(),
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule
@@ -55,7 +59,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ApiService,
     AuthService,
     AuthGuard,
-    LoginGuard
+    LoginGuard,
+    SessionGuard
   ],
   bootstrap: [AppComponent]
 })
