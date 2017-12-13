@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-tig',
@@ -32,5 +34,7 @@ export class TigComponent implements OnInit {
 
   ngOnInit() {
   }
-
+    toggleCollapse() {
+        $('.collapse.show').collapse('hide');
+    }
 }
