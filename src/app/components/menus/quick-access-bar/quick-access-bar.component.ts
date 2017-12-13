@@ -19,9 +19,12 @@ export class QuickAccessBarComponent implements OnInit {
 
   onLogout() {
     this.apiService.apiDelete('/security/access', '')
-      .subscribe(data => {
-        window.localStorage.removeItem('token');
+      .then(result => {
+        window.localStorage.removeItem('session');
         this.router.navigateByUrl('/login');
+      })
+      .catch(error => {
+        console.log("Error on logout", error);
       });
   }
 

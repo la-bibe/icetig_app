@@ -13,7 +13,7 @@ export class AuthGuard {
   }
 
   checkLogin(url) {
-    if (window.localStorage.getItem('token'))
+    if (window.localStorage.getItem('session'))
       return true;
     this.authService.redirectUrl = url;
     this.router.navigate(['/login']);
