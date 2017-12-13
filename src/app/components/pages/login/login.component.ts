@@ -14,8 +14,9 @@ import {AuthService} from "../../../services/auth.service";
   host: {'[@slideInOutAnimation]': ''}
 })
 export class LoginComponent implements OnInit {
-  login = '';
-  pass = '';
+  login: string;
+  pass: string;
+  remember: boolean;
 
   badCredentials = false;
 
@@ -27,10 +28,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    let login = `${this.login}:${this.pass}`;
+    let credentials = `${this.login}:${this.pass}`;
+    let remember = `?stay_connected=${(!this.remember) ? 1 : 0}`;
 
-    this.http.get(environment.apiUrl + '/security/access', {
-      headers: new HttpHeaders().set('Authorization', `Basic ${btoa(login)}`), withCredentials: true
+    this.http.get(environment.apiUrl + '/security/access' + remember, {
+      headers: new HttpHeaders().set('Authorization', `Basic ${btoa(credentials)}`), withCredentials: true
     }).toPromise()
       .then(result => {
         window.localStorage.setItem('session', JSON.stringify((result as ILoginResponse).data));
