@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
@@ -8,7 +8,10 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   nav = new Array();
-  navopen = true;
+  navBarSizes = {open : '250px', close : '65px'};
+  navBarWidth = this.navBarSizes.open;
+
+  @Output() private onSizeChange = new EventEmitter();
 
   constructor() {
     this.nav = [this.newTab(`DashBoard`, 'icons/nav-dashboard.svg', '/'),
@@ -26,6 +29,7 @@ export class NavigationComponent implements OnInit {
   }
 
   changeWidth = function(){
-    this.navopen = !this.navopen;
+    this.navBarWidth = this.navBarWidth === this.navBarSizes.close ? this.navBarSizes.open : this.navBarSizes.close;
+    this.onSizeChange.emit(this.navBarWidth);
   }
 }

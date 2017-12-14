@@ -1,2 +1,5 @@
 <app-quick-access-bar></app-quick-access-bar>
-<app-navigation></app-navigation>
+<app-navigation (onSizeChange)="onNavSizeChange($event)"></app-navigation>
+<div class="admin-page" [style.marginLeft]="navBarWidth" [style.marginTop]="'65px'">
+    <router-outlet></router-outlet>
+</div>

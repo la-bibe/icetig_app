@@ -18,15 +18,14 @@ import {QuickAccessBarComponent} from './components/menus/quick-access-bar/quick
 import {NavigationComponent} from './components/menus/navigation/navigation.component';
 import {TigComponent} from './components/pages/tig/tig.component';
 import {ShiftComponent} from './components/pages/shift/shift.component';
-import {ApiService} from "./services/api.service";
-import {routes} from "./app-routing.module";
-import {AuthGuard} from "./guards/auth.guard";
-import {AuthService} from "./services/auth.service";
-import {LoginGuard} from "./guards/login.guard";
+import {ApiService} from './services/api.service';
+import {routes} from './app-routing.module';
+import {AuthGuard} from './guards/auth.guard';
+import {AuthService} from './services/auth.service';
+import {LoginGuard} from './guards/login.guard';
 
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {SessionGuard} from "./guards/session.guard";
-import {MatTooltipModule} from "@angular/material";
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {SessionGuard} from './guards/session.guard';
 
 @NgModule({
   declarations: [
@@ -46,7 +45,6 @@ import {MatTooltipModule} from "@angular/material";
     FormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
-    MatTooltipModule,
     HttpClientModule,
     AngularSvgIconModule,
     NgbModule.forRoot(),

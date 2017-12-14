@@ -63,20 +63,20 @@ export class DynamicBackgroundComponent implements OnInit, AfterViewInit {
 
     while (logo.p === pval) {
       p = Math.random() * (expandedWidth + expandedHeight) * 2;
-      if (logo.p != 1 && p < expandedWidth) {
+      if (logo.p !== 1 && p < expandedWidth) {
         coord.x = p;
         coord.y = 0;
         pval = 1;
-      } else if (logo.p != 2 && p < expandedWidth + expandedHeight) {
+      } else if (logo.p !== 2 && p < expandedWidth + expandedHeight) {
         coord.x = expandedWidth;
         coord.y = p - expandedWidth;
         pval = 2;
-      } else if (logo.p != 3 && p - (expandedWidth + expandedHeight) < expandedWidth) {
+      } else if (logo.p !== 3 && p - (expandedWidth + expandedHeight) < expandedWidth) {
         p = p - (expandedWidth + expandedHeight);
         coord.x = expandedWidth - p;
         coord.y = expandedHeight;
         pval = 3;
-      } else if (logo.p != 4) {
+      } else if (logo.p !== 4) {
         p = p - (expandedWidth + expandedHeight);
         coord.x = 0;
         coord.y = expandedHeight - (p - expandedWidth);
