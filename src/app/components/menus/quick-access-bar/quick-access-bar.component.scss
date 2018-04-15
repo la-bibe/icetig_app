@@ -1,5 +1,23 @@
 @import '../../../../variables';
 
+$hamburger-padding-x                       : 23px !default;
+$hamburger-padding-y                       : 10px !default;
+$hamburger-layer-width                     : 30px !default;
+$hamburger-layer-height                    : 3px !default;
+$hamburger-layer-spacing                   : 6px !default;
+$hamburger-layer-color                     : #fff !default;
+$hamburger-layer-border-radius             : 4px !default;
+$hamburger-hover-opacity                   : 0.7 !default;
+$hamburger-hover-transition-duration       : 0.15s !default;
+$hamburger-hover-transition-timing-function: collapse !default;
+@import "../../../../../node_modules/hamburgers/_sass/hamburgers/hamburgers";
+
+button:active, button:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none
+}
+
 .quick-access-bar {
   position: fixed;
   top: 0;
@@ -10,62 +28,116 @@
   background-color: var(--secondary-color);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
 
-  .pedago-title {
-    display: inline-flex;
-    height: inherit;
-    vertical-align: middle;
+  .quick-access-bar-infos {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
 
-    svg {
-      width: 250px;
-      padding-left: 25px;
-      padding-right: 25px;
+    .hamburger-box {
+      margin-top: 6px;
     }
-  }
 
-  .quick-access-wrappers {
-    display: inline-table;
-    height: inherit;
-    float: right;
-    vertical-align: middle;
-
-    > * {
-      display: table-cell;
+    .pedago-title {
+      display: inline-flex;
       height: inherit;
-      padding-left: 20px;
-      padding-right: 20px;
       vertical-align: middle;
+
+      svg {
+        width: 250px;
+        padding-left: 25px;
+        padding-right: 25px;
+      }
     }
 
-    svg {
-      height: 60%;
+    .quick-access-wrappers {
+      display: inline-table;
+      height: inherit;
       vertical-align: middle;
-      fill: #fff;
 
-      &.gear {
+      > * {
+        display: table-cell;
+        height: inherit;
+        padding-left: 20px;
+        padding-right: 20px;
+        vertical-align: middle;
+      }
+
+      svg {
+        height: 60%;
+        vertical-align: middle;
+        fill: #fff;
+
+        &.gear {
+          opacity: 0.3;
+        }
+      }
+      .options {
         opacity: 0.3;
       }
-    }
-    .options {
-      opacity: 0.3;
-    }
 
-    .profile {
-      height: inherit;
-      > * {
-        display: inline-block;
+      svg:hover {
+        cursor: pointer;
       }
-      img {
-        height: 80%;
-        border-left: var(--primary-color) solid 4px;
-        box-sizing: border-box;
-      }
-      p {
-        margin: 0 auto;
-        vertical-align: middle;
-        color: #fff;
-        opacity: 0.7;
-        line-height: 130%;
+
+      .profile {
+        height: inherit;
+
+        > * {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        .profile-picture {
+          height: 50px;
+          width: 50px;
+          border-left: var(--primary-color) solid 4px;
+          box-sizing: border-box;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: cover;
+        }
+
+        p {
+          margin: 0 auto;
+          vertical-align: middle;
+          color: #fff;
+          opacity: 0.7;
+          line-height: 130%;
+        }
       }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .quick-access-bar {
+    .mobile-navigation {
+      display: none;
+    }
+    .quick-access-bar-infos {
+      .hamburger {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .quick-access-bar {
+    overflow: hidden;
+    transition: height 0.5s ease;
+    .quick-access-bar-infos {
+      .quick-access-wrappers > *:not(.logout) {
+        display: none;
+      }
+    }
+  }
+  .quick-access-bar.is-active {
+    height: 100vh;
+    transition: height 0.5s ease;
+  }
+  .quick-access-bar.is-active  + body{
+
+    overflow: hidden;
   }
 }

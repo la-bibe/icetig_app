@@ -1,13 +1,20 @@
-<div class="quick-access-bar wrapper">
-  <app-dynamic-background height="60px"></app-dynamic-background>
-  <div class="pedago-title" [inlineSVG]="'/pedago.svg'"></div>
-  <div class="quick-access-wrappers">
-    <div class="notification" [inlineSVG]="'/icons/notification.svg'"></div>
-    <div class="profile">
-    <img class="image" src="/assets/avatar.jpg" alt="profil-image">
-      <p>Welcome !<br/><span class="first-name">Pierre Jean</span><span class="second-name"> Martin</span></p>
+<div class="quick-access-bar wrapper" [ngClass]="{'is-active' : isActive}">
+  <app-dynamic-background [height]="isActive ? '100vh' : '60px'"></app-dynamic-background>
+  <div class="quick-access-bar-infos">
+      <button class="hamburger hamburger--collapse" [ngClass]="{'is-active' : isActive}" (click)="toggleMenu($event)" type="button">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+      </button>
+    <div class="pedago-title" [inlineSVG]="'/pedago.svg'"></div>
+   <div class="quick-access-wrappers">
+      <div class="notification" [inlineSVG]="'/icons/notification.svg'"></div>
+      <div class="profile">
+          <div class="profile-picture" [style.backgroundImage]="'url('+getUrl()+')'"></div>
+        <p>Welcome !<br/><span class="second-name">{{user.firstName}}</span> <span class="first-name">{{user.lastName}}</span></p>
+      </div>
+      <div class="logout" [inlineSVG]="'/icons/logout.svg'" (click)="onLogout()"></div>
     </div>
-    <div class="options" [inlineSVG]="'/icons/gear.svg'"></div>
-    <input type="button" (click)="onLogout()">
   </div>
+    <app-navigation class="mobile-navigation"></app-navigation>
 </div>

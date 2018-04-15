@@ -18,5 +18,4 @@ export class AdminComponent implements OnInit {
     onNavSizeChange(size) {
         this.navBarWidth = size;
     }
-
 }

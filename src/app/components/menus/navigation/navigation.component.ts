@@ -28,7 +28,7 @@ export class NavigationComponent implements OnInit {
     return {name: name, svglink: svg, link: link};
   }
 
-  changeWidth = function(){
+  changeWidth = function() {
     this.navBarWidth = this.navBarWidth === this.navBarSizes.close ? this.navBarSizes.open : this.navBarSizes.close;
     this.onSizeChange.emit(this.navBarWidth);
   }
