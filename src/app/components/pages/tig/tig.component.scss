@@ -120,6 +120,17 @@ table#tig-table {
 }
 
 @media screen and (max-width: 1500px) {
+  .tig-container {
+    position: relative;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    table#tig-table {
+      width: 1200px;
+    }
+  }
+
   table#tig-table tbody tr td {
     &.profile .profile-wrapper {
       .cropcircle, .infos p.mail {
@@ -130,10 +141,4 @@ table#tig-table {
 }
 
 @media screen and (max-width: 1280px) {
-  table#tig-table tbody tr td,
-  table#tig-table thead tr td{
-    &.work, &.end-date {
-      display: none;
-    }
-  }
 }
