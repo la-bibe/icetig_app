@@ -26,43 +26,45 @@ import {LoginGuard} from './guards/login.guard';
 
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionGuard} from './guards/session.guard';
+import {PermissionsService} from './services/permissions.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoaderComponent,
-    LoginComponent,
-    DynamicBackgroundComponent,
-    QuickAccessBarComponent,
-    NavigationComponent,
-    AdminComponent,
-    TigComponent,
-    ShiftComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NoopAnimationsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AngularSvgIconModule,
-    NgbModule.forRoot(),
-    RouterModule.forRoot(routes),
-    InlineSVGModule.forRoot({baseUrl: './assets/'}),
-    NgbModule.forRoot(),
-    HttpClientModule,
-    BrowserModule,
-    BrowserAnimationsModule
-  ],
-  providers: [
-    ApiService,
-    AuthService,
-    AuthGuard,
-    LoginGuard,
-    SessionGuard
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoaderComponent,
+        LoginComponent,
+        DynamicBackgroundComponent,
+        QuickAccessBarComponent,
+        NavigationComponent,
+        AdminComponent,
+        TigComponent,
+        ShiftComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        NoopAnimationsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        AngularSvgIconModule,
+        NgbModule.forRoot(),
+        RouterModule.forRoot(routes),
+        InlineSVGModule.forRoot({baseUrl: './assets/'}),
+        NgbModule.forRoot(),
+        HttpClientModule,
+        BrowserModule,
+        BrowserAnimationsModule
+    ],
+    providers: [
+        ApiService,
+        AuthService,
+        PermissionsService,
+        AuthGuard,
+        LoginGuard,
+        SessionGuard
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
