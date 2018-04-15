@@ -101,3 +101,70 @@
 
   button:focus {outline:0;}
 }
+
+@media screen and (max-width: 767px) {
+  .navigation-container {
+    width: 100vw !important;
+    height: calc(100vh - 60px);
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: 0;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      li {
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        a {
+          flex-direction: column;
+          height: auto;
+          width: 150px;
+          color: var(--tertiary-color);
+
+          div {
+            border-radius: 50%;
+            border-color: var(--tertiary-color);
+            border-style: solid;
+            transition: all 0.5s ease;
+
+            svg {
+              margin: 20px;
+              fill: var(--tertiary-color);
+            }
+          }
+
+          p {
+            margin-top: 10px;
+            display: block;
+            text-transform: uppercase;
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+
+        &.active a {
+          background-color: transparent;
+
+          div {
+            border-color: var(--primary-color);
+            transition: all 0.5s ease;
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

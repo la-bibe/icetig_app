@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class QuickAccessBarComponent implements OnInit {
 
     user={};
+    isActive = false;
   constructor(private apiService: ApiService, private router: Router) {
       this.user = JSON.parse(window.localStorage.getItem('session')).user;
       console.log(this.user);
@@ -31,4 +32,15 @@ export class QuickAccessBarComponent implements OnInit {
       });
   }
 
+  toggleMenu(event) {
+      this.isActive = !this.isActive;
+  }
+
+  getUrl() {
+/*      return 'url("https://cdn.local.epitech.eu/userprofil/"' + this.user.firstName.toLowerCase()
+          + this.user.lastName.toLowerCase() + '.bmp")';*/
+    return "https://cdn.local.epitech.eu/userprofil/trombiview/" + this.user.firstName.toLowerCase() + "." + this.user.lastName.toLowerCase() + ".jpg";
+/*      return "url('http://estringsoftware.com/wp-content/uploads/2017/07/estring-header-lowsat.jpg')";*/
+
+  }
 }
