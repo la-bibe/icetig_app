@@ -15,17 +15,16 @@ export class TigComponent implements OnInit {
 
   fakeArray = '';
   /* En attendant l'api */
-  statusList = ['Assigned', 'In progress', 'Done', 'Not done'];
+  stateList = ['Assigned', 'In progress', 'Done', 'Not done'];
   statusColors = {};
-  tigArray;
+  tigs;
 
   constructor(private apiService: ApiService, private http: Http) {
-    this.statusColors['Assigned'] = '#00ADB5';
-    this.statusColors['In progress'] = '#FFDD00';
-    this.statusColors['Not done'] = '#B50000';
-    this.statusColors['Done'] = '#14C400';
-    this.getJSON().subscribe(data => this.tigArray = data, error => console.log(error));
-      console.log(this.tigArray);
+    this.statusColors[0] = '#00ADB5';
+    this.statusColors[1] = '#FFDD00';
+    this.statusColors[2] = '#B50000';
+    this.statusColors[3] = '#14C400';
+    this.apiService.getSanctions(4).then(data => this.tigs = data["data"], error => console.log(error));
   }
 
   public getJSON() {

@@ -1,0 +1,53 @@
+{
+  "parameters": {
+    "action_acl": {
+      "read_own_user": {},
+      "read_own_user_info": {},
+      "read_own_user_groups": {},
+      "update_own_user_info": {},
+      "read_group_user_info": {
+        "user_info": "r",
+        "user": "r"
+      },
+      "read_group_user_groups": {
+        "user_group": "r",
+        "user": "r"
+      },
+      "update_group_user_info": {
+        "user_info": "u",
+        "user": "u"
+      },
+      "update_group_user_groups": {
+        "user_group": "u",
+        "user": "u"
+      },
+      "create_group_user": {
+        "user": "c"
+      },
+      "delete_group_user": {
+        "user": "d"
+      },
+      "update_group_user": {
+        "user": "u"
+      },
+      "read_group_user": {
+        "user": "r"
+      },
+      "read_group_user_full": {
+        "user_info": "r",
+        "user_group":"r",
+        "user": "r"
+      },
+      "read_own_user_sanctions": {},
+      "read_group_user_sanctions": {
+        "user": "r",
+        "user_sanctions": "r"
+      },
+      "read_own_user_permissions": {},
+      "read_group_user_permissions": {
+        "user": "r",
+        "user_permission": "r"
+      }
+    }
+  }
+}
