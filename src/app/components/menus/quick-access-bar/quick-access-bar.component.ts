@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ApiService} from "../../../services/api.service";
-import {Router} from "@angular/router";
+import {ApiService} from '../../../services/api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-quick-access-bar',
@@ -11,11 +11,10 @@ import {Router} from "@angular/router";
 
 export class QuickAccessBarComponent implements OnInit {
 
-    user={};
+    user;
     isActive = false;
   constructor(private apiService: ApiService, private router: Router) {
       this.user = JSON.parse(window.localStorage.getItem('session')).user;
-      console.log(this.user);
   }
 
   ngOnInit() {
@@ -28,7 +27,7 @@ export class QuickAccessBarComponent implements OnInit {
         this.router.navigateByUrl('/login');
       })
       .catch(error => {
-        console.log("Error on logout", error);
+        console.log('Error on logout', error);
       });
   }
 
@@ -37,10 +36,8 @@ export class QuickAccessBarComponent implements OnInit {
   }
 
   getUrl() {
-/*      return 'url("https://cdn.local.epitech.eu/userprofil/"' + this.user.firstName.toLowerCase()
-          + this.user.lastName.toLowerCase() + '.bmp")';*/
-    return "https://cdn.local.epitech.eu/userprofil/trombiview/" + this.user.firstName.toLowerCase() + "." + this.user.lastName.toLowerCase() + ".jpg";
-/*      return "url('http://estringsoftware.com/wp-content/uploads/2017/07/estring-header-lowsat.jpg')";*/
-
+      return 'https://cdn.local.epitech.eu/userprofil/trombiview/'
+          + this.user.firstName.toLowerCase() + '.'
+          + this.user.lastName.toLowerCase() + '.jpg';
   }
 }
