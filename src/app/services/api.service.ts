@@ -26,8 +26,8 @@ export class ApiService {
 
   apiGet(path) {
     const headers = ApiService.getHeaders('GET', path, ``);
-
-    this.http.get(`${this.apiUrl}${path}`, {headers: headers, withCredentials: true}).toPromise();
+    console.log(this.apiUrl + path);
+    return this.http.get(`${this.apiUrl}${path}`, {headers: headers, withCredentials: true});
   }
 
   apiDelete(path, body) {
