@@ -5,9 +5,8 @@
     <div class="notification" [inlineSVG]="'/icons/notification.svg'"></div>
     <div class="profile">
     <img class="image" src="/assets/avatar.jpg" alt="profil-image">
-      <p>Welcome !<br/><span class="first-name">Pierre Jean</span><span class="second-name"> Martin</span></p>
+      <p>Welcome !<br/><span class="second-name">{{user.firstName}}</span> <span class="first-name">{{user.lastName}}</span></p>
     </div>
-    <div class="options" [inlineSVG]="'/icons/gear.svg'"></div>
-    <input type="button" (click)="onLogout()">
+    <div class="logout" [inlineSVG]="'/icons/logout.svg'" (click)="onLogout()"></div>
   </div>
 </div>

@@ -11,7 +11,10 @@ import {Router} from "@angular/router";
 
 export class QuickAccessBarComponent implements OnInit {
 
+    user={};
   constructor(private apiService: ApiService, private router: Router) {
+      this.user = JSON.parse(window.localStorage.getItem('session')).user;
+      console.log(this.user);
   }
 
   ngOnInit() {

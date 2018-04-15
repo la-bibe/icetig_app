@@ -49,6 +49,10 @@
       opacity: 0.3;
     }
 
+    svg:hover {
+      cursor: pointer;
+    }
+
     .profile {
       height: inherit;
       > * {
@@ -58,6 +62,7 @@
         height: 80%;
         border-left: var(--primary-color) solid 4px;
         box-sizing: border-box;
+        clip-path: url(#avatar-clipping);
       }
       p {
         margin: 0 auto;
