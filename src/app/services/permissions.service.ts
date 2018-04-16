@@ -5,7 +5,7 @@ import {ApiService} from './api.service';
 @Injectable()
 export class PermissionsService {
     actionsAcl: object;
-    userPermissions: object;
+    permissions: object;
 
     constructor(private http: HttpClient, private apiService: ApiService) {
         this.http.get('/assets/permissions.json').subscribe(permissions => {
@@ -15,7 +15,7 @@ export class PermissionsService {
         if (window.localStorage.getItem('session')) {
             this.apiService.getPermissions(JSON.parse(window.localStorage.getItem('session')).user.id)
                 .then(permissions => {
-                    this.userPermissions = (permissions as IPermissions).data;
+                    this.permissions = (permissions as IPermissions).data;
                 })
                 .catch(error => {
                     console.log(error);
@@ -26,7 +26,7 @@ export class PermissionsService {
     refreshPermission() {
         this.apiService.getPermissions(JSON.parse(window.localStorage.getItem('session')).user.id)
             .then(permissions => {
-                this.userPermissions = (permissions as IPermissions).data;
+                this.permissions = (permissions as IPermissions).data;
             })
             .catch(error => {
                 console.log(error);
@@ -38,16 +38,42 @@ export class PermissionsService {
         this.apiService.getGroups(target)
             .then(groups => {
 
-                if (!(action in this.actionsAcl)) {
+                groups = (groups as IGroups).data;
+
+                if (!this.actionsAcl.hasOwnProperty(action)) {
                     return false;
                 }
 
+                for (const key of Object.keys(this.actionsAcl[action])) {
 
+                    if (!this.permissions.hasOwnProperty(key)) {
+                        return false;
+                    }
 
-                console.log(this.actionsAcl);
-                console.log(this.userPermissions);
-                console.log((groups as IGroups).data);
+                    for (const ace of this.actionsAcl[action][key]) {
 
+                        if (this.permissions[key].hasOwnProperty('*') &&
+                            this.permissions[key]['*'].hasOwnProperty(ace) &&
+                            this.permissions[key]['*'][ace]) {
+                            continue;
+                        }
+
+                        if (target === -1) {
+                            return false;
+                        }
+
+                        for (const group in groups) {
+
+                            if (!this.permissions[key].hasOwnProperty(group) ||
+                                !this.permissions[key][group].hasOwnProperty(ace) ||
+                                !this.permissions[key][group][ace]) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                return true;
             })
             .catch(error => {
                 console.log(error);
