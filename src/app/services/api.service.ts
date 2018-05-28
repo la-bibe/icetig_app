@@ -26,7 +26,6 @@ export class ApiService {
         return new HttpHeaders().set('Authorization', `HMAC algo=${algo},time=${Math.floor(Date.now() / 1000)},hash=${hash}`);
     }
 
-
     apiGet(path) {
         const headers = ApiService.getHeaders('GET', path, ``);
 

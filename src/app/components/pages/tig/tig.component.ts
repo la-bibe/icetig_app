@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {ApiService} from '../../../services/api.service';
 declare var jquery: any;
 declare var $: any;
 
@@ -13,22 +14,22 @@ declare var $: any;
 export class TigComponent implements OnInit {
 
   fakeArray = '';
-    /* En attendant l'api */
-  statusList = ['Assigned', 'In progress', 'Done', 'Not done'];
+  /* En attendant l'api */
+  stateList = ['Assigned', 'In progress', 'Done', 'Not done'];
   statusColors = {};
+  tigs;
 
-  constructor(private http: Http) {
-    this.statusColors['Assigned'] = '#00ADB5';
-    this.statusColors['In progress'] = '#FFDD00';
-    this.statusColors['Not done'] = '#B50000';
-    this.statusColors['Done'] = '#14C400';
-    this.getJSON().subscribe(data => this.fakeArray = data, error => console.log(error));
+  constructor(private apiService: ApiService, private http: Http) {
+    this.statusColors[0] = '#00ADB5';
+    this.statusColors[1] = '#FFDD00';
+    this.statusColors[2] = '#B50000';
+    this.statusColors[3] = '#14C400';
+    this.apiService.getSanctions(4).then(data => this.tigs = data["data"], error => console.log(error));
   }
 
-  public getJSON(): Observable<any> {
+  public getJSON() {
     console.log('loading');
-    return this.http.get('/assets/tig.json')
-      .map((res: any) => res.json());
+    return this.apiService.apiGet('/user/4/sanctions');
   }
 
   ngOnInit() {

@@ -19,7 +19,7 @@
   </tr>
   </thead>
   <tbody id="tiglist">
-  <tr *ngFor="let tig of fakeArray; let i = index">
+  <tr *ngFor="let tig of tigs; let i = index">
     <td class="shrink checkmark-tig">
       <div class="checkmark">
         <input id="checkbox-{{i}}" type="checkbox">
@@ -28,34 +28,34 @@
     </td>
     <td class="shrink profile assigned">
       <div class="profile-wrapper">
-        <div class="cropcircle" [style.backgroundImage]="'url('+tig.assigned.avatar+')'"></div>
+        <div class="cropcircle" [style.backgroundImage]="'url('+tig.id+')'"></div>
         <div class="infos">
-          <p class="name">{{tig.assigned.firstName}} {{tig.assigned.lastName}}</p>
-          <p class="mail">{{tig.assigned.mail}}</p>
+          <p class="name">{{tig.id}}</p>
+          <p class="mail">{{tig.id}}</p>
         </div>
       </div>
     </td>
-    <td class="shrink date"><p>{{tig.grantDate}}</p></td>
+    <td class="shrink date"><p>{{tig.date.date}}</p></td>
     <td class="expand reason" >
       <a role="button" class="collapse" data-toggle="collapse" data-parent="#tiglist" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}" (click)="toggleCollapse()">
         <p class="collapseTig-{{i}} collapsed">{{tig.reason}}</p>
       </a>  </td>
     <td class="shrink profile allocator">
       <div class="profile-wrapper">
-        <div class="cropcircle" [style.backgroundImage]="'url('+tig.allocator.avatar+')'"></div>
+        <div class="cropcircle" [style.backgroundImage]="'url('+tig.issuer+')'"></div>
         <div class="infos">
-          <p class="name">{{tig.allocator.firstName}} {{tig.allocator.lastName}}</p>
-          <p class="mail">{{tig.allocator.mail}}</p>
+          <p class="name">{{tig.issuer}} {{tig.issuer}}</p>
+          <p class="mail">{{tig.issuer}}</p>
         </div>
       </div>
     </td>
-    <td class="shrink status"><span class="label" [style.backgroundColor]="statusColors[tig.status]">{{tig.status}}</span></td>
+    <td class="shrink status"><span class="label" [style.backgroundColor]="statusColors[tig.state]">{{stateList[tig.state]}}</span></td>
     <td class="expand work">
       <a role="button" class="collapse" data-toggle="collapse" data-parent="#tiglist" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}" (click)="toggleCollapse()">
-        <p class="collapseTig-{{i}} collapsed">{{tig.work}}</p>
+        <p class="collapseTig-{{i}} collapsed">{{tig.subject}}</p>
       </a>
     </td>
-    <td class="shrink end-date"><p [innerHTML]="tig.endDate.start + ((tig.endDate.end === null) ? '' : '<br>' + tig.endDate.end)"></p></td>
+    <td class="shrink end-date"><p [innerHTML]="((tig.startDate === null) ? ' ' : tig.startDate) + ((tig.endDate === null) ? '' : '<br>' + tig.endDate)"></p></td>
     <td class="shrink more"><div [inlineSVG]="'/icons/more.svg'"></div></td>
   </tr>
   </tbody>
