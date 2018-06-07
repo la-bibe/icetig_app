@@ -31,10 +31,10 @@ export class TigComponent implements OnInit {
 		this.statusColors[2] = '#B50000';
 		this.statusColors[3] = '#14C400';
 
-		// if (this.permissionService.hasPermission("read_group_user_sanctions", -1))
-		// 	this.apiService.getSanctions()
-		// 		.then(data => this.tigs = data["data"], error => console.log(error));
-		// else
+		if (this.permissionService.hasPermission("read_group_user_sanctions", -1))
+			this.apiService.getSanctions()
+				.then(data => this.tigs = data['data'], error => console.log(error));
+		else
 			this.apiService.getSanctions(this.sessionService.getID())
 				.then(data => this.tigs = data['data'], error => console.log(error));
 	}
