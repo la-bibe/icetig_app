@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {TestBed, inject} from '@angular/core/testing';
 
-import { PermissionsService } from './permissions.service';
+import {PermissionsService} from './permissions.service';
 
 describe('PermissionsService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [PermissionsService]
-    });
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [PermissionsService]
+		});
+	});
 
-  it('should be created', inject([PermissionsService], (service: PermissionsService) => {
-    expect(service).toBeTruthy();
-  }));
+	it('should be created', inject([PermissionsService], (service: PermissionsService) => {
+		expect(service).toBeTruthy();
+	}));
 });

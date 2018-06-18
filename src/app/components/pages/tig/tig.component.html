@@ -35,7 +35,7 @@
         </div>
       </div>
     </td>
-    <td class="shrink date"><p>{{tig.date.date}}</p></td>
+    <td class="shrink date"><p>{{getFormatedDate(tig.date)}}</p></td>
     <td class="expand reason" >
       <a role="button" class="collapse" data-toggle="collapse" data-parent="#tiglist" href=".collapseTig-{{i}}" aria-expanded="false" attr.aria-controls="collapseTig-{{i}}" (click)="toggleCollapse()">
         <p class="collapseTig-{{i}} collapsed">{{tig.reason}}</p>
@@ -55,7 +55,7 @@
         <p class="collapseTig-{{i}} collapsed">{{tig.subject}}</p>
       </a>
     </td>
-    <td class="shrink end-date"><p [innerHTML]="((tig.startDate === null) ? ' ' : tig.startDate) + ((tig.endDate === null) ? '' : '<br>' + tig.endDate)"></p></td>
+    <td class="shrink end-date"><p [innerHTML]="((tig.startDate === null) ? ' ' : getFormatedDate(tig.startDate)) + ((tig.endDate === null) ? '' : '<br>' + getFormatedDate(tig.endDate))"></p></td>
     <td class="shrink more"><div [inlineSVG]="'/icons/more.svg'"></div></td>
   </tr>
   </tbody>
