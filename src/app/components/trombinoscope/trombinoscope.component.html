@@ -1,37 +1,76 @@
-<!--<app-easyshit></app-easyshit>-->
-
 <div class="container">
     <div class="row">
 
-        <div class="col-sm">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm d-flex justify-content-center">
+            <div class="card d-flex align-items-center justify-content-center" style="width: 18rem;">
 
-                <img class="card-img-top" src={{randomStudentTwo}} alt="photo">
+                <br>
+                <h3 class="card-title">Easyshit Mode</h3>
+                <img class="card-img-top" src={{randomStudentOnePhotoUrl}} alt="photo">
                 <div class="card-body">
-                    <h5 class="card-title">Qui est cet étudiant ?</h5>
                     <div class="card-text">
 
-                        Workhard
+                        <div class="card-text">
 
+                            <div class="btn-group-vertical">
+
+                                <button type="button" class="btn btn-outline-info btn-sm" *ngFor="let student of randomStudents">
+                                    {{student[0]}}
+                                </button>
+
+                                <br>
+
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-info" *ngFor="let promotion of promotions">
+                                        {{promotion}}
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <div class="col-sm">
+
+            <br>
+            <h1>Trombinoscope.</h1>
+
+            <p class="lead">
+                Choose bewtween the easy mode or the hard mode, then let's play
+            </p>
+
+            <button type="button" class="btn btn-lg btn-block btn-info">Easyshit</button>
+            <button type="button" class="btn btn-lg btn-block btn-info">Hardwork</button>
+
 
         </div>
 
-        <div class="col-sm">
-            <div class="card" style="width: 18rem;">
+        <div class="col-sm d-flex justify-content-center">
+            <div class="card d-flex align-items-center justify-content-center" style="width: 18rem;">
 
-                <img class="card-img-top" src={{randomStudentOne}} alt="photo">
+                <br>
+                <h3 class="card-title">Workhard Mode</h3>
+
+                <img class="card-img-top" src={{randomStudentTwoPhotoUrl}} alt="photo">
                 <div class="card-body">
-                    <h5 class="card-title">Qui est cet étudiant ?</h5>
                     <div class="card-text">
 
-                        Easyshit
+                        <div class="input-group">
+                            <input type="text" aria-label="blocking" class="form-control">
+                            <input type="text" aria-label="blocking" class="form-control">
+                        </div>
+
+                        <br>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-info" *ngFor="let promotion of promotions">
+                                {{promotion}}
+                            </button>
+                        </div>
 
                     </div>
                 </div>
