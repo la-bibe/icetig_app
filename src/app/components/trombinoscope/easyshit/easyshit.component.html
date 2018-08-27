@@ -1,39 +1,38 @@
 <div class="container">
     <div class="row">
 
+        <div class="col-sm d-flex justify-content-center">
+            <div class="card d-flex align-items-center justify-content-center" style="width: 18rem;">
 
-        <div class="col-sm">
-
-            {{score}} / {{passed}} / {{todo}}
-
-
-
-        </div>
-
-
-        <div class="col-sm">
-            <div class="card" style="width: 18rem;">
-
-                <img class="card-img-top" src={{randomStudentPhotoUrl}} alt="photo">
+                <br>
+                <h3 class="card-title">Easyshit Mode</h3>
+                <img class="card-img-top" src={{randomStudentOnePhotoUrl}} alt="photo">
                 <div class="card-body">
-                    <h5 class="card-title">Qui est cet étudiant ?</h5>
                     <div class="card-text">
 
-                        <div class="btn-group-vertical">
+                        <div class="card-text">
 
-                            <button type="button" class="btn btn-sm" (click)="onSubmit($event)" *ngFor="let student of randomStudents">
-                                {{student[0]}}
-                            </button>
+                            <div class="btn-group-vertical">
+
+                                <button type="button" class="btn btn-outline-info btn-sm" *ngFor="let student of randomStudents">
+                                    {{student[0]}}
+                                </button>
+
+                                <br>
+
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-info" *ngFor="let promotion of promotions">
+                                        {{promotion}}
+                                    </button>
+                                </div>
+
+                            </div>
 
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="col-sm"></div>
+
     </div>
 </div>
-
-

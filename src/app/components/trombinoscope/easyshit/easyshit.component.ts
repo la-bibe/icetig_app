@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {students} from "../../../students";
+import {StudentsService} from "../../../services/students.service";
 
 @Component({
   selector: 'app-easyshit',
@@ -18,35 +19,12 @@ export class EasyshitComponent implements OnInit {
 
 	choosenStudent: [string, number] = null;
 
-	constructor() {
+	constructor(private studentsService: StudentsService) {
 	}
 
 	ngOnInit() {
 
 		this.reRoll();
-	}
-
-	getRandomInt(min: number, max: number): number {
-
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-
-	getRandomsInt(min: number, max: number): number[] {
-
-		let rs = [];
-
-		do {
-
-			let r = this.getRandomInt(min, max);
-
-			if (rs.indexOf(r) == -1) {
-
-				rs.push(r);
-			}
-
-		} while (rs.length != 4);
-
-		return rs;
 	}
 
 	onSubmit(event) {
@@ -83,7 +61,7 @@ export class EasyshitComponent implements OnInit {
 		this.randomStudents = [];
 		this.randomStudentPhotoUrl = "/assets/photos/";
 
-		let rs: number[] = this.getRandomsInt(0, students.length - 1);
+		let rs: number[] = this.studentsService.getRandomStudents(4);
 
 		for (let r of rs) {
 
@@ -93,9 +71,6 @@ export class EasyshitComponent implements OnInit {
 		let r = this.getRandomInt(0, 3);
 
 		this.randomStudent = this.randomStudents[r];
-
-		console.log(r);
-		console.log(this.randomStudent);
 
 		this.randomStudentPhotoUrl += this.randomStudent[0] + ".bmp";
 	}

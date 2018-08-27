@@ -10,8 +10,11 @@ export class TrombinoscopeComponent implements OnInit {
 
 	photoBaseUrl = "/assets/photos/";
 
-	randomStudentOne: string = null;
-	randomStudentTwo: string = null;
+	randomStudents: [string, number][];
+	randomStudentOnePhotoUrl: string = null;
+	randomStudentTwoPhotoUrl: string = null;
+
+	promotions: number[] = [];
 
 	constructor(private studentService: StudentsService) {
 
@@ -19,15 +22,15 @@ export class TrombinoscopeComponent implements OnInit {
 
 	ngOnInit() {
 
+		this.promotions = this.studentService.getPromotions();
+
 		setInterval(() => {
 
-			const student1: [string, number] = this.studentService.getRandomStudent("21");
-			const student2: [string, number] = this.studentService.getRandomStudent("21");
+			this.randomStudents = this.studentService.getRandomStudents(4, 2021);
+			this.randomStudentOnePhotoUrl = `${this.photoBaseUrl}${this.randomStudents[this.studentService.getRandomInt(0, 3)][0]}.bmp`;
+			this.randomStudentTwoPhotoUrl = `${this.photoBaseUrl}${this.studentService.getRandomStudent(2021)[0]}.bmp`;
 
-			this.randomStudentOne = this.photoBaseUrl + student1[0] + ".bmp";
-			this.randomStudentTwo = this.photoBaseUrl + student2[0] + ".bmp";
-
-		}, 500);
+		}, 1000);
 
 	}
 }
