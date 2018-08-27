@@ -32,6 +32,7 @@ import {LoginGuard} from './guards/login.guard';
 import {SessionGuard} from './guards/session.guard';
 import { TrombinoscopeComponent } from './components/trombinoscope/trombinoscope.component';
 import { EasyshitComponent } from './components/trombinoscope/easyshit/easyshit.component';
+import {StudentsService} from "./services/students.service";
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import { EasyshitComponent } from './components/trombinoscope/easyshit/easyshit.
         AuthService,
         PermissionsService,
 	    SessionService,
+	    StudentsService,
         AuthGuard,
         LoginGuard,
         SessionGuard

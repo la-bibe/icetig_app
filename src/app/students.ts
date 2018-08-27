@@ -84,7 +84,7 @@ export const students: Array<[string, number]> = [
 	["quentin.sanchez", 21],
 	["romain.driat", 21],
 	["roman.melentov", 21],
-	["sacha.rollin", 21],
+	["sacha.rollin", 20],
 	["sofian.saada", 21],
 	["steven.toussaint", 21],
 	["sylvain.nauroy-bethune", 21],
