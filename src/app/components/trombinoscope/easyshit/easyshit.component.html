@@ -1,38 +1,45 @@
-<div class="container">
-    <div class="row">
+<div class="col-sm d-flex justify-content-center">
+    <div class="card d-flex align-items-center justify-content-center" style="width: 18rem;">
 
-        <div class="col-sm d-flex justify-content-center">
-            <div class="card d-flex align-items-center justify-content-center" style="width: 18rem;">
+        <h3 class="card-title" *ngIf="!onGame()"><br>
+            Easy Mode
+        </h3>
+
+        <img class="card-img-top" src={{randomStudentPhotoUrl}} alt="photo">
+
+        <div class="card-body">
+            <div class="card-text">
+
+                <div class="btn-group-vertical">
+
+                    <button type="button" class="btn btn-outline-info btn-lg btn-block "
+                            *ngFor="let student of randomStudents"
+                            (click)="onSubmit($event)">
+
+                        {{student[0]}}
+                    </button>
+
+                </div>
 
                 <br>
-                <h3 class="card-title">Easyshit Mode</h3>
-                <img class="card-img-top" src={{randomStudentOnePhotoUrl}} alt="photo">
-                <div class="card-body">
-                    <div class="card-text">
 
-                        <div class="card-text">
+                <!--<div class="btn-group" role="group" aria-label="randomStudents">-->
+                <!--<button type="button" class="btn btn-info"-->
+                <!--*ngFor="let promotion of promotions">-->
 
-                            <div class="btn-group-vertical">
+                <!--{{promotion}}-->
+                <!--</button>-->
+                <!--</div>-->
 
-                                <button type="button" class="btn btn-outline-info btn-sm" *ngFor="let student of randomStudents">
-                                    {{student[0]}}
-                                </button>
+                <blockquote class="blockquote text-center"
+                            *ngIf="onGame()">
 
-                                <br>
+                    <br>
+                    <p class="mb-0">{{currentGame.getScore()}} / {{currentGame.getGoal()}}</p>
+                    <footer class="blockquote-footer">Remain: {{currentGame.getRemain()}}</footer>
+                </blockquote>
 
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-info" *ngFor="let promotion of promotions">
-                                        {{promotion}}
-                                    </button>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
     </div>
 </div>
