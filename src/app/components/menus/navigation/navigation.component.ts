@@ -17,8 +17,8 @@ export class NavigationComponent implements OnInit {
     this.nav = [this.newTab(`DashBoard`, 'icons/nav-dashboard.svg', '/'),
       this.newTab(`TIG`, 'icons/nav-tig.svg', '/tig'),
       this.newTab(`Shifts`, 'icons/nav-shifts.svg', '/shifts'),
-      this.newTab(`Students`, 'icons/nav-students.svg', '/students'),
-      this.newTab(`Marks`, 'icons/nav-marks.svg', '/marks')];
+      this.newTab(`Trombi`, 'icons/nav-students.svg', '/trombinoscope'),
+	    this.newTab(`Marks`, 'icons/nav-marks.svg', '/marks')];
   }
 
   ngOnInit() {
