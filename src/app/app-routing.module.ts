@@ -7,7 +7,7 @@ import {TigComponent} from "./components/pages/tig/tig.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {LoginGuard} from "./guards/login.guard";
 import {SessionGuard} from "./guards/session.guard";
-import {TrombinoscopeComponent} from "./components/trombinoscope/trombinoscope.component";
+import {TrombinoscopeComponent} from "./components/pages/trombinoscope/trombinoscope.component";
 
 @NgModule({
 	exports: [RouterModule]

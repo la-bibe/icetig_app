@@ -1,35 +1,23 @@
-import {
-	Component,
-	ElementRef,
-	EventEmitter,
-	Input,
-	OnChanges,
-	OnInit,
-	Output,
-	SimpleChanges, ViewChild
-} from '@angular/core';
-import {StudentsService} from "../../../services/students.service";
-import {Game} from "../../../Game";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {StudentsService} from "../../../../services/students.service";
+import {EasyGame, Game} from "../../../../Game";
 
 @Component({
-	selector: 'app-hardwork',
-	templateUrl: './hardwork.component.html',
-	styleUrls: ['./hardwork.component.scss']
+	selector: 'app-easyshit',
+	templateUrl: './easyshit.component.html',
+	styleUrls: ['./easyshit.component.scss']
 })
-export class HardworkComponent implements OnInit, OnChanges {
+export class EasyshitComponent implements OnInit, OnChanges {
 
-	@ViewChild('firstName') firstNameInput: ElementRef;
 	@Output() finishedGame = new EventEmitter();
 	@Input() currentGame: Game;
 
 	photoBaseUrl: string = "https://cdn.local.epitech.eu/userprofil/profilview/";
 	randomStudent: [string, number];
+	randomStudents: [string, number][];
 	randomStudentPhotoUrl: string;
 
-	chosenFirstname: string;
-	chosenLastname: string;
-	chosenStudent: string;
-
+	chosenStudent: [string, number] = null;
 	promotions: number[] = [];
 
 	constructor(private studentsService: StudentsService) {
@@ -54,9 +42,15 @@ export class HardworkComponent implements OnInit, OnChanges {
 
 	onSubmit(event) {
 
-		this.chosenStudent = `${this.chosenFirstname}.${this.chosenLastname}`;
+		for (let student of this.randomStudents) {
 
-		if (this.randomStudent[0] == this.chosenStudent) {
+			if (event.target.innerText == student[0]) {
+
+				this.chosenStudent = student;
+			}
+		}
+
+		if (this.chosenStudent[0] == this.randomStudent[0]) {
 
 			if (this.onGame()) {
 
@@ -66,12 +60,10 @@ export class HardworkComponent implements OnInit, OnChanges {
 
 					this.reRoll();
 				}
-
 			} else {
 
 				this.reRoll();
 			}
-
 
 		} else if (this.onGame()) {
 
@@ -96,16 +88,13 @@ export class HardworkComponent implements OnInit, OnChanges {
 
 	reRoll() {
 
-		this.randomStudent = this.studentsService.getRandomStudent(
+		this.randomStudents = this.studentsService.getRandomStudents(4,
 			(this.onGame())
-				? this.currentGame.getPromotion()
-				: null);
+			? this.currentGame.getPromotion()
+			: null);
+
+		this.randomStudent = this.randomStudents[this.studentsService.getRandomInt(0, 3)];
 
 		this.randomStudentPhotoUrl = `${this.photoBaseUrl}${this.randomStudent[0]}.jpg`;
-
-		this.chosenFirstname = "";
-		this.chosenLastname = "";
-
-		this.firstNameInput.nativeElement.focus();
 	}
 }

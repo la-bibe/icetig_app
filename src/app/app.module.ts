@@ -30,53 +30,53 @@ import {SessionService} from './services/session.service';
 import {AuthGuard} from './guards/auth.guard';
 import {LoginGuard} from './guards/login.guard';
 import {SessionGuard} from './guards/session.guard';
-import { TrombinoscopeComponent } from './components/trombinoscope/trombinoscope.component';
-import { EasyshitComponent } from './components/trombinoscope/easyshit/easyshit.component';
+import {TrombinoscopeComponent} from './components/pages/trombinoscope/trombinoscope.component';
+import {EasyshitComponent} from './components/pages/trombinoscope/easyshit/easyshit.component';
 import {StudentsService} from "./services/students.service";
-import { HardworkComponent } from './components/trombinoscope/hardwork/hardwork.component';
+import {HardworkComponent} from './components/pages/trombinoscope/hardwork/hardwork.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        LoaderComponent,
-        LoginComponent,
-        DynamicBackgroundComponent,
-        QuickAccessBarComponent,
-        NavigationComponent,
-        AdminComponent,
-        TigComponent,
-        ShiftComponent,
-        TrombinoscopeComponent,
-        EasyshitComponent,
-        HardworkComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        NoopAnimationsModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        AngularSvgIconModule,
-        NgbModule.forRoot(),
-        RouterModule.forRoot(routes),
-        InlineSVGModule.forRoot({baseUrl: './assets/'}),
-        NgbModule.forRoot(),
-        HttpClientModule,
-        BrowserModule,
-        BrowserAnimationsModule
-    ],
-    providers: [
-        ApiService,
-        AuthService,
-        PermissionsService,
-	    SessionService,
-	    StudentsService,
-        AuthGuard,
-        LoginGuard,
-        SessionGuard
-    ],
-    bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		LoaderComponent,
+		LoginComponent,
+		DynamicBackgroundComponent,
+		QuickAccessBarComponent,
+		NavigationComponent,
+		AdminComponent,
+		TigComponent,
+		ShiftComponent,
+		TrombinoscopeComponent,
+		EasyshitComponent,
+		HardworkComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		NoopAnimationsModule,
+		BrowserAnimationsModule,
+		HttpClientModule,
+		AngularSvgIconModule,
+		NgbModule.forRoot(),
+		RouterModule.forRoot(routes),
+		InlineSVGModule.forRoot({baseUrl: './assets/'}),
+		NgbModule.forRoot(),
+		HttpClientModule,
+		BrowserModule,
+		BrowserAnimationsModule
+	],
+	providers: [
+		ApiService,
+		AuthService,
+		PermissionsService,
+		SessionService,
+		StudentsService,
+		AuthGuard,
+		LoginGuard,
+		SessionGuard
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule {
 }
