@@ -1,23 +1,35 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {StudentsService} from "../../../services/students.service";
-import {EasyGame, Game} from "../../../Game";
+import {
+	Component,
+	ElementRef,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnInit,
+	Output,
+	SimpleChanges, ViewChild
+} from '@angular/core';
+import {StudentsService} from "../../../../services/students.service";
+import {Game} from "../../../../Game";
 
 @Component({
-	selector: 'app-easyshit',
-	templateUrl: './easyshit.component.html',
-	styleUrls: ['./easyshit.component.scss']
+	selector: 'app-hardwork',
+	templateUrl: './hardwork.component.html',
+	styleUrls: ['./hardwork.component.scss']
 })
-export class EasyshitComponent implements OnInit, OnChanges {
+export class HardworkComponent implements OnInit, OnChanges {
 
+	@ViewChild('firstName') firstNameInput: ElementRef;
 	@Output() finishedGame = new EventEmitter();
 	@Input() currentGame: Game;
 
 	photoBaseUrl: string = "https://cdn.local.epitech.eu/userprofil/profilview/";
 	randomStudent: [string, number];
-	randomStudents: [string, number][];
 	randomStudentPhotoUrl: string;
 
-	chosenStudent: [string, number] = null;
+	chosenFirstname: string;
+	chosenLastname: string;
+	chosenStudent: string;
+
 	promotions: number[] = [];
 
 	constructor(private studentsService: StudentsService) {
@@ -42,15 +54,9 @@ export class EasyshitComponent implements OnInit, OnChanges {
 
 	onSubmit(event) {
 
-		for (let student of this.randomStudents) {
+		this.chosenStudent = `${this.chosenFirstname}.${this.chosenLastname}`;
 
-			if (event.target.innerText == student[0]) {
-
-				this.chosenStudent = student;
-			}
-		}
-
-		if (this.chosenStudent[0] == this.randomStudent[0]) {
+		if (this.randomStudent[0] == this.chosenStudent) {
 
 			if (this.onGame()) {
 
@@ -60,10 +66,12 @@ export class EasyshitComponent implements OnInit, OnChanges {
 
 					this.reRoll();
 				}
+
 			} else {
 
 				this.reRoll();
 			}
+
 
 		} else if (this.onGame()) {
 
@@ -88,13 +96,16 @@ export class EasyshitComponent implements OnInit, OnChanges {
 
 	reRoll() {
 
-		this.randomStudents = this.studentsService.getRandomStudents(4,
+		this.randomStudent = this.studentsService.getRandomStudent(
 			(this.onGame())
-			? this.currentGame.getPromotion()
-			: null);
-
-		this.randomStudent = this.randomStudents[this.studentsService.getRandomInt(0, 3)];
+				? this.currentGame.getPromotion()
+				: null);
 
 		this.randomStudentPhotoUrl = `${this.photoBaseUrl}${this.randomStudent[0]}.jpg`;
+
+		this.chosenFirstname = "";
+		this.chosenLastname = "";
+
+		this.firstNameInput.nativeElement.focus();
 	}
 }
