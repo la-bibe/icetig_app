@@ -30,6 +30,10 @@ import {SessionService} from './services/session.service';
 import {AuthGuard} from './guards/auth.guard';
 import {LoginGuard} from './guards/login.guard';
 import {SessionGuard} from './guards/session.guard';
+import { TrombinoscopeComponent } from './components/trombinoscope/trombinoscope.component';
+import { EasyshitComponent } from './components/trombinoscope/easyshit/easyshit.component';
+import {StudentsService} from "./services/students.service";
+import { HardworkComponent } from './components/trombinoscope/hardwork/hardwork.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +45,10 @@ import {SessionGuard} from './guards/session.guard';
         NavigationComponent,
         AdminComponent,
         TigComponent,
-        ShiftComponent
+        ShiftComponent,
+        TrombinoscopeComponent,
+        EasyshitComponent,
+        HardworkComponent
     ],
     imports: [
         BrowserModule,
@@ -64,6 +71,7 @@ import {SessionGuard} from './guards/session.guard';
         AuthService,
         PermissionsService,
 	    SessionService,
+	    StudentsService,
         AuthGuard,
         LoginGuard,
         SessionGuard
