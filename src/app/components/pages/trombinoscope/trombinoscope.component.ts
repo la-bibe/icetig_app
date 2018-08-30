@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {StudentsService} from "../../services/students.service";
-import {EasyGame, Game, HardGame} from "../../Game";
+import {EasyGame, Game, HardGame} from "../../../Game";
+import {StudentsService} from "../../../services/students.service";
 
 @Component({
 	selector: 'app-trombinoscope',

@@ -49,6 +49,33 @@
         font-size: 20px;
         cursor: pointer;
       }
+
+      .form-check {
+        margin-bottom: 4px;
+        margin-top: 4px;
+      }
     }
+
+    .input-confirm {
+      position: absolute;
+      z-index: 0;
+      right: 15px;
+      width: 48%;
+    }
+
+    .input-confirm-label {
+
+      top: 80px;
+    }
+
+    .btn-toggle {
+      color: #95989A;
+      background-color: transparent;
+    }
+    .btn-toggle:hover {
+      cursor: pointer;
+    }
+
+
   }
 }

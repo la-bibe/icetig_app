@@ -21,6 +21,8 @@ export class QuickAccessBarComponent implements OnInit {
   }
 
   onLogout() {
+
+  	console.log("Yes");
     this.apiService.apiDelete('/security/access', '')
       .then(result => {
         window.localStorage.removeItem('session');
