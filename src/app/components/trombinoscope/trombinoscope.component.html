@@ -1,81 +1,116 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-sm d-flex justify-content-center">
-            <div class="card d-flex align-items-center justify-content-center" style="width: 18rem;">
-
-                <br>
-                <h3 class="card-title">Easyshit Mode</h3>
-                <img class="card-img-top" src={{randomStudentOnePhotoUrl}} alt="photo">
-                <div class="card-body">
-                    <div class="card-text">
-
-                        <div class="card-text">
-
-                            <div class="btn-group-vertical">
-
-                                <button type="button" class="btn btn-outline-info btn-sm" *ngFor="let student of randomStudents">
-                                    {{student[0]}}
-                                </button>
-
-                                <br>
-
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-info" *ngFor="let promotion of promotions">
-                                        {{promotion}}
-                                    </button>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <app-easyshit
+                *ngIf="!onGame() || (onGame() && currentGame.getType() == 1)"
+                [currentGame]="currentGame"
+                (finishedGame)="endGame($event)">
+        </app-easyshit>
 
         <div class="col-sm">
 
             <br>
             <h1>Trombinoscope.</h1>
 
-            <p class="lead">
-                Choose bewtween the easy mode or the hard mode, then let's play
-            </p>
+            <div
+                    *ngIf="!onGame()">
 
-            <button type="button" class="btn btn-lg btn-block btn-info">Easyshit</button>
-            <button type="button" class="btn btn-lg btn-block btn-info">Hardwork</button>
+                <p class="lead">
+                    Choose bewtween the easy mode or the hard mode, then let's play
+                </p>
 
+                <button type="button" class="btn btn-lg btn-block btn-info" (click)="startEasyGame()">Start easy game
+                </button>
+                <button type="button" class="btn btn-lg btn-block btn-info" (click)="startHardGame()">Start hard game
+                </button>
+
+                <br>
+
+                <div class="btn-group d-flex align-items-center justify-content-center" role="group"
+                     aria-label="Button group with nested dropdown">
+
+                    <div class="btn-group" role="group">
+                        <button id="chosenNumber" type="button" class="btn btn-lg btn-block btn-outline-info"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{chosenGoal}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="chosenNumber">
+                            <button type="button" class="dropdown-item" (click)="chooseGoal(10)">10</button>
+                            <button type="button" class="dropdown-item" (click)="chooseGoal(50)">50</button>
+                            <button type="button" class="dropdown-item" (click)="chooseGoal(100)">100</button>
+                            <button type="button" class="dropdown-item" (click)="chooseGoal(500)">500</button>
+                        </div>
+                    </div>
+
+                    <div class="btn-group" role="group">
+                        <button id="chosenPromotion" type="button" class="btn btn-lg btn-block btn-outline-info"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{(chosenPromotion) ? chosenPromotion : "All"}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="chosenPromotion">
+                            <button type="button" class="dropdown-item" (click)="choosePromotion(null)">All</button>
+                            <button type="button" class="dropdown-item" (click)="choosePromotion(2020)">2020</button>
+                            <button type="button" class="dropdown-item" (click)="choosePromotion(2021)">2021</button>
+                            <button type="button" class="dropdown-item" (click)="choosePromotion(2022)">2022</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div *ngIf="onGame()">
+
+                <p class="lead">
+                    Let's play !
+                </p>
+
+                <button type="button" class="btn btn-lg btn-block btn-danger" (click)="stopGame()">Leave</button>
+                <button type="button" class="btn btn-lg btn-block btn-success" disabled>Save</button>
+
+            </div>
 
         </div>
 
-        <div class="col-sm d-flex justify-content-center">
-            <div class="card d-flex align-items-center justify-content-center" style="width: 18rem;">
 
-                <br>
-                <h3 class="card-title">Workhard Mode</h3>
+        <app-hardwork
+                *ngIf="!onGame() || (onGame() && currentGame.getType() == 2)"
+                [currentGame]="currentGame"
+                (finishedGame)="endGame($event)">
+        </app-hardwork>
 
-                <img class="card-img-top" src={{randomStudentTwoPhotoUrl}} alt="photo">
-                <div class="card-body">
-                    <div class="card-text">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+             *ngIf="onGame()">
 
-                        <div class="input-group">
-                            <input type="text" aria-label="blocking" class="form-control">
-                            <input type="text" aria-label="blocking" class="form-control">
-                        </div>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Game finished</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <blockquote class="blockquote text-center">
 
-                        <br>
-
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-info" *ngFor="let promotion of promotions">
-                                {{promotion}}
-                            </button>
-                        </div>
-
+                            <br>
+                            <p class="mb-0">Final score: {{currentGame.getScore()}} / {{currentGame.getGoal()}}</p>
+                        </blockquote>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+
 </div>
+
+<!-- Button trigger modal -->
+<button #openModalButton type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+        [hidden]="true"></button>
+

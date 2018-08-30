@@ -1,30 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import {students} from "../../../students";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {StudentsService} from "../../../services/students.service";
+import {EasyGame, Game} from "../../../Game";
 
 @Component({
-  selector: 'app-easyshit',
-  templateUrl: './easyshit.component.html',
-  styleUrls: ['./easyshit.component.scss']
+	selector: 'app-easyshit',
+	templateUrl: './easyshit.component.html',
+	styleUrls: ['./easyshit.component.scss']
 })
-export class EasyshitComponent implements OnInit {
+export class EasyshitComponent implements OnInit, OnChanges {
 
-	todo: number = 100;
-	passed: number = 0;
-	score: number = 0;
+	@Output() finishedGame = new EventEmitter();
+	@Input() currentGame: Game;
 
-	randomStudent: [string, number] = null;
-	randomStudents: [string, number][] = [];
-	randomStudentPhotoUrl: string = "/assets/photos/";
+	photoBaseUrl: string = "/assets/photos/";
+	randomStudent: [string, number];
+	randomStudents: [string, number][];
+	randomStudentPhotoUrl: string;
 
-	choosenStudent: [string, number] = null;
+	chosenStudent: [string, number] = null;
+	promotions: number[] = [];
 
 	constructor(private studentsService: StudentsService) {
+
 	}
 
 	ngOnInit() {
 
+		this.currentGame = null;
+
+		this.promotions = this.studentsService.getPromotions();
+
 		this.reRoll();
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+
+		this.reRoll();
+
+		this.currentGame = changes.currentGame.currentValue;
 	}
 
 	onSubmit(event) {
@@ -33,46 +46,55 @@ export class EasyshitComponent implements OnInit {
 
 			if (event.target.innerText == student[0]) {
 
-				this.choosenStudent = student;
+				this.chosenStudent = student;
 			}
 		}
 
-		this.passed += 1;
+		if (this.chosenStudent[0] == this.randomStudent[0]) {
 
-		if (this.score == this.todo) {
+			if (this.onGame()) {
 
-			console.log("GG");
+				this.currentGame.scoreUp(true);
 
-		} else {
+				if (!this.currentGame.isFinished()) {
 
-			if (this.choosenStudent[0] == this.randomStudent[0]) {
+					this.reRoll();
+				}
+			} else {
 
-				this.score += 1;
+				this.reRoll();
 			}
 
-			this.reRoll();
+		} else if (this.onGame()) {
+
+			this.currentGame.scoreUp(false);
+
+			if (!this.currentGame.isFinished()) {
+
+				this.reRoll();
+			}
 		}
 
+		if (this.onGame() && this.currentGame.isFinished()) {
+
+			this.finishedGame.emit();
+		}
+	}
+
+	onGame(): boolean {
+
+		return this.currentGame != null;
 	}
 
 	reRoll() {
 
-		this.randomStudent = null;
-		this.randomStudents = [];
-		this.randomStudentPhotoUrl = "/assets/photos/";
+		this.randomStudents = this.studentsService.getRandomStudents(4,
+			(this.onGame())
+			? this.currentGame.getPromotion()
+			: null);
 
-		let rs: number[] = this.studentsService.getRandomStudents(4);
+		this.randomStudent = this.randomStudents[this.studentsService.getRandomInt(0, 3)];
 
-		for (let r of rs) {
-
-			this.randomStudents.push(students[r]);
-		}
-
-		let r = this.getRandomInt(0, 3);
-
-		this.randomStudent = this.randomStudents[r];
-
-		this.randomStudentPhotoUrl += this.randomStudent[0] + ".bmp";
+		this.randomStudentPhotoUrl = `${this.photoBaseUrl}${this.randomStudent[0]}.bmp`;
 	}
-
 }

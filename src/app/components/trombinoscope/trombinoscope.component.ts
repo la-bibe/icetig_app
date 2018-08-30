@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {StudentsService} from "../../services/students.service";
+import {EasyGame, Game, HardGame} from "../../Game";
 
 @Component({
 	selector: 'app-trombinoscope',
@@ -8,29 +9,58 @@ import {StudentsService} from "../../services/students.service";
 })
 export class TrombinoscopeComponent implements OnInit {
 
+	@ViewChild('openModalButton') openModalButton: ElementRef;
+
 	photoBaseUrl = "/assets/photos/";
 
-	randomStudents: [string, number][];
-	randomStudentOnePhotoUrl: string = null;
-	randomStudentTwoPhotoUrl: string = null;
+	chosenGoal: number = 50;
+	chosenPromotion: number = 0;
 
-	promotions: number[] = [];
+	currentGame: Game;
+	finalScore: number = 0;
 
-	constructor(private studentService: StudentsService) {
+	constructor(private studentsService: StudentsService) {
 
 	}
 
 	ngOnInit() {
 
-		this.promotions = this.studentService.getPromotions();
+		this.currentGame = null;
 
-		setInterval(() => {
+	}
 
-			this.randomStudents = this.studentService.getRandomStudents(4, 2021);
-			this.randomStudentOnePhotoUrl = `${this.photoBaseUrl}${this.randomStudents[this.studentService.getRandomInt(0, 3)][0]}.bmp`;
-			this.randomStudentTwoPhotoUrl = `${this.photoBaseUrl}${this.studentService.getRandomStudent(2021)[0]}.bmp`;
+	chooseGoal(goal: number) {
 
-		}, 1000);
+		this.chosenGoal = goal;
+	}
 
+	choosePromotion(promotion: number) {
+
+		this.chosenPromotion = promotion;
+	}
+
+	onGame(): boolean {
+
+		return this.currentGame != null;
+	}
+
+	startEasyGame() {
+
+		this.currentGame = new EasyGame(this.chosenGoal, this.chosenPromotion);
+	}
+
+	startHardGame() {
+
+		this.currentGame = new HardGame(this.chosenGoal, this.chosenPromotion);
+	}
+
+	stopGame() {
+
+		this.currentGame = null;
+	}
+
+	endGame(event) {
+
+		this.openModalButton.nativeElement.click();
 	}
 }

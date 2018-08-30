@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {students} from "../students";
-import {getRandomString} from "selenium-webdriver/safari";
 
 @Injectable()
 export class StudentsService {
@@ -17,7 +16,7 @@ export class StudentsService {
 
 		let randomStudent = null;
 
-		if (promotion != null && this.getPromotions().indexOf(promotion) == -1) {
+		if (promotion && this.getPromotions().indexOf(promotion) == -1) {
 
 			return null;
 		}
@@ -26,7 +25,7 @@ export class StudentsService {
 
 			randomStudent = students[this.getRandomInt(0, students.length - 1)]
 
-		} while (promotion != null && randomStudent[1] != promotion);
+		} while (promotion && randomStudent[1] != promotion);
 
 		return randomStudent
 	}
@@ -37,8 +36,22 @@ export class StudentsService {
 
 		while (number > 0) {
 
-			students.push(this.getRandomStudent(promotion));
-			--number;
+			let student = this.getRandomStudent(promotion);
+			let already = false;
+
+			for (let st of students) {
+
+				if (student[0] == st[0]) {
+
+					already = true;
+				}
+			}
+
+			if (!already) {
+
+				students.push(student);
+				--number;
+			}
 		}
 
 		return students;
