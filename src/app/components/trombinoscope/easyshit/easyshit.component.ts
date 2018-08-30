@@ -12,7 +12,7 @@ export class EasyshitComponent implements OnInit, OnChanges {
 	@Output() finishedGame = new EventEmitter();
 	@Input() currentGame: Game;
 
-	photoBaseUrl: string = "/assets/photos/";
+	photoBaseUrl: string = "https://cdn.local.epitech.eu/userprofil/profilview/";
 	randomStudent: [string, number];
 	randomStudents: [string, number][];
 	randomStudentPhotoUrl: string;
@@ -95,6 +95,6 @@ export class EasyshitComponent implements OnInit, OnChanges {
 
 		this.randomStudent = this.randomStudents[this.studentsService.getRandomInt(0, 3)];
 
-		this.randomStudentPhotoUrl = `${this.photoBaseUrl}${this.randomStudent[0]}.bmp`;
+		this.randomStudentPhotoUrl = `${this.photoBaseUrl}${this.randomStudent[0]}.jpg`;
 	}
 }

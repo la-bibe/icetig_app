@@ -11,7 +11,7 @@ export class TrombinoscopeComponent implements OnInit {
 
 	@ViewChild('openModalButton') openModalButton: ElementRef;
 
-	photoBaseUrl = "/assets/photos/";
+	photoBaseUrl = "https://cdn.local.epitech.eu/userprofil/profilview/";
 
 	chosenGoal: number = 50;
 	chosenPromotion: number = 0;
@@ -56,6 +56,7 @@ export class TrombinoscopeComponent implements OnInit {
 
 	stopGame() {
 
+		console.log("stop");
 		this.currentGame = null;
 	}
 
