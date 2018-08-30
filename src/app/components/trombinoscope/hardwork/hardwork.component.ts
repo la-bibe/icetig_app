@@ -22,7 +22,7 @@ export class HardworkComponent implements OnInit, OnChanges {
 	@Output() finishedGame = new EventEmitter();
 	@Input() currentGame: Game;
 
-	photoBaseUrl: string = "/assets/photos/";
+	photoBaseUrl: string = "https://cdn.local.epitech.eu/userprofil/profilview/";
 	randomStudent: [string, number];
 	randomStudentPhotoUrl: string;
 
@@ -101,7 +101,7 @@ export class HardworkComponent implements OnInit, OnChanges {
 				? this.currentGame.getPromotion()
 				: null);
 
-		this.randomStudentPhotoUrl = `${this.photoBaseUrl}${this.randomStudent[0]}.bmp`;
+		this.randomStudentPhotoUrl = `${this.photoBaseUrl}${this.randomStudent[0]}.jpg`;
 
 		this.chosenFirstname = "";
 		this.chosenLastname = "";
