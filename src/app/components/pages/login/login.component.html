@@ -13,14 +13,42 @@
 
             <div class="col-12 col-sm-10 col-md-6 col-lg-4 align-self-center">
 
-                <form class="form">
-                    <label for="login">Login</label>
-                    <input type="text" name="login" id="login" required [(ngModel)]="login">
-                    <label for="pass" style="z-index: 1">Password</label>
-                    <input [type]="(isRegister()) ? 'text' : 'password'" name="pass" id="pass"  required [(ngModel)]="pass" [@scaleInOut]="formType" style="z-index: 1">
+                <form class="form container-fluid">
 
-                    <label for="cpass" *ngIf="isRegister()" class="input-confirm input-confirm-label" [@flyInOut]="formType">Confirm</label>
-                    <input [type]="(isRegister()) ? 'text' : 'password'" name="cpass" id="cpass" required [(ngModel)]="cpass" *ngIf="isRegister()" class="input-confirm" [@flyInOut]="formType">
+                    <div id="nameWrapper" class="form row justify-content-between" [class.extended]="isRegistration()">
+
+                        <div class="form col-xs input-register">
+                            <label for="firstname">Firstname</label>
+                            <input type="text" name="firstname" id="firstname" required [(ngModel)]="firstName">
+                        </div>
+
+                        <div class="form col-xs input-register">
+                            <label for="lastname">Lastname</label>
+                            <input type="text" name="lastname" id="lastname" required [(ngModel)]="lastName">
+                        </div>
+
+                    </div>
+
+                    <div class="form row input-login">
+                        <label for="login">Login</label>
+                        <input type="text" name="login" id="login" required [(ngModel)]="eMail">
+                    </div>
+
+                    <div class="form row justify-content-between">
+
+                        <div id="passwordWrapper" class="form col-xs input-login" [class.extended]="isRegistration()">
+                            <label for="password">Password</label>
+                            <input type="password" name="pass" id="password" required
+                                   [(ngModel)]="password">
+                        </div>
+
+                        <div id="cpasswordWrapper" class="form col-xs input-register" [class.extended]="isRegistration()">
+                            <label for="confirmPassword">Confirm</label>
+                            <input type="password" name="cpass" id="confirmPassword" required
+                                   [(ngModel)]="confirmPassword" class="pull-right">
+                        </div>
+
+                    </div>
 
                     <ngb-alert *ngIf="badCredentials">Mauvais identifiants</ngb-alert>
                     <div class="submit-wrapper">
@@ -34,12 +62,12 @@
                     <br>
                     <blockquote class="blockquote text-center">
                         <footer class="blockquote-footer btn btn-info btn-toggle"
-                                (click)="toggleRegister()">
+                                (click)="toggleMode()">
 
                             {{
-                                (isRegister())
-                                ? "Have an account ? Log in !"
-                                : "No account ? Create one !"
+                            (isRegistration())
+                            ? "Have an account ? Log in !"
+                            : "No account ? Create one !"
                             }}
 
                         </footer>

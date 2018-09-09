@@ -56,16 +56,46 @@
       }
     }
 
-    .input-confirm {
-      position: absolute;
-      z-index: 0;
-      right: 15px;
-      width: 48%;
+    .input-login {
+      z-index: 1;
     }
 
-    .input-confirm-label {
+    .input-register {
+      width: 49%;
+    }
 
-      top: 80px;
+    #passwordWrapper {
+      width: 100%;
+      transition: width ease-in .5s;
+    }
+
+    #passwordWrapper.extended {
+      width: 49%;
+      transition: width ease-in .5s;
+    }
+
+    #cpasswordWrapper {
+      width: 0;
+      transition: width ease-in .5s;
+      overflow: hidden;
+    }
+
+    #cpasswordWrapper.extended {
+      width: 49%;
+      transition: width ease-in .5s;
+    }
+
+    #nameWrapper {
+      z-index: 0;
+      position: relative;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height ease-in .5s;
+    }
+
+    #nameWrapper.extended {
+      max-height: 100px;
+      transition: max-height ease-in .5s;
     }
 
     .btn-toggle {
@@ -75,7 +105,6 @@
     .btn-toggle:hover {
       cursor: pointer;
     }
-
 
   }
 }
