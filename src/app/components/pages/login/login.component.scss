@@ -56,16 +56,17 @@
       }
     }
 
-    .input-confirm {
-      position: absolute;
-      z-index: 0;
-      right: 15px;
-      width: 48%;
+    .input-login {
+      z-index: 1;
     }
 
-    .input-confirm-label {
+    .input-register {
+      width: 49%;
+    }
 
-      top: 80px;
+    .input-name {
+      z-index: 0;
+      position: relative;
     }
 
     .btn-toggle {
@@ -75,7 +76,6 @@
     .btn-toggle:hover {
       cursor: pointer;
     }
-
 
   }
 }

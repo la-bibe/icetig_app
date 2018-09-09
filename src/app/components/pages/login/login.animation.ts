@@ -32,13 +32,13 @@ export const flyInOut =
 			opacity: 0
 		})),
 		state('register', style({
-			width: '45%',
+			width: '49%',
 			opacity: 1
 		})),
 
 		transition('void => register', [
 			animate('.5s ease-in', style({
-				width: '45%',
+				width: '49%',
 				opacity: 1
 			}))
 		]),
@@ -58,18 +58,69 @@ export const scaleInOut =
 			width: '100%'
 		})),
 		state('register', style({
-			width: '48%'
+			width: '49%'
 		})),
 
 		transition('login => register', [
 			animate('.5s ease-in', style({
-				width: '48%'
+				width: '49%'
 			}))
 		]),
 
 		transition('register => login', [
 			animate('.5s ease-in', style({
 				width: '100%'
+			}))
+		]),
+	]);
+
+export const translateTop =
+	trigger('translateTop', [
+
+		state('login', style({
+			transform: 'translateY(0%)'
+		})),
+		state('register', style({
+			transform: 'translateY(-80px)'
+		})),
+
+		transition('register => login', [
+			animate('.5s ease-in', style({
+				transform: 'translateY(0%)'
+			}))
+		]),
+		transition('login => register', [
+			animate('.5s ease-in', style({
+				transform: 'translateY(-80px)'
+			}))
+		]),
+	]);
+
+export const slideInTop =
+	trigger('slideInTop', [
+
+		state('void', style({
+			transform: 'translateY(0)',
+			width: '100%',
+			opacity: 0
+		})),
+		state('register', style({
+			transform: 'translateY(-80px)',
+			width: '100%',
+			opacity: 1
+		})),
+
+		transition('void => register', [
+			animate('.5s ease-in', style({
+				transform: 'translateY(-80px)',
+				opacity: 1
+			}))
+		]),
+
+		transition('register => void', [
+			animate('.5s ease-in', style({
+				transform: 'translateY(0)',
+				opacity: 0
 			}))
 		]),
 	]);

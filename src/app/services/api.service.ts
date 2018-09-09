@@ -33,10 +33,21 @@ export class ApiService {
 		return this.http.get(`${this.apiUrl}${path}`, {headers: headers, withCredentials: true}).toPromise();
 	}
 
+	apiPost(path, body) {
+		const headers = ApiService.getHeaders('POST', path, body);
+
+		return this.http.get(`${this.apiUrl}${path}`, {headers: headers, withCredentials: true}).toPromise();
+	}
+
 	apiDelete(path, body) {
 		const headers = ApiService.getHeaders('DELETE', path, body);
 
 		return this.http.delete(`${this.apiUrl}${path}`, {headers: headers, withCredentials: true}).toPromise();
+	}
+
+	userPost(body) {
+
+		return this.apiPost(this.apiUserPath, body);
 	}
 
 	getUserPath(user: number) {

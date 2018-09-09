@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {flyInOut, scaleInOut, slideInOutAnimation} from './login.animation';
+import {flyInOut, scaleInOut, slideInOutAnimation, slideInTop, translateTop} from './login.animation';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Router} from "@angular/router";
@@ -10,15 +10,18 @@ import {AuthService} from "../../../services/auth.service";
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.scss'],
-	animations: [slideInOutAnimation, scaleInOut, flyInOut],
+	animations: [slideInOutAnimation, scaleInOut, flyInOut, slideInTop, translateTop],
 	host: {'[@slideInOutAnimation]': ''}
 })
 export class LoginComponent implements OnInit {
-	login: string;
-	pass: string;
-	cpass: string;
+	firstName: string;
+	lastName: string;
+	eMail: string;
+	password: string;
+	confirmPassword: string;
 	remember: boolean;
-	formType: string = 'login';
+
+	formType: string = 'register';
 
 	badCredentials = false;
 
@@ -30,7 +33,7 @@ export class LoginComponent implements OnInit {
 
 	onSubmit() {
 
-		let credentials = `${this.login}:${this.pass}`;
+		let credentials = `${this.eMail}:${this.password}`;
 		let remember = `?stay_connected=${(!this.remember) ? 1 : 0}`;
 
 		this.http.get(environment.apiUrl + '/security/access' + remember, {
