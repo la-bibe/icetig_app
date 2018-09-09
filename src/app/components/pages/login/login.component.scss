@@ -64,9 +64,38 @@
       width: 49%;
     }
 
-    .input-name {
+    #passwordWrapper {
+      width: 100%;
+      transition: width ease-in .5s;
+    }
+
+    #passwordWrapper.extended {
+      width: 49%;
+      transition: width ease-in .5s;
+    }
+
+    #cpasswordWrapper {
+      width: 0;
+      transition: width ease-in .5s;
+      overflow: hidden;
+    }
+
+    #cpasswordWrapper.extended {
+      width: 49%;
+      transition: width ease-in .5s;
+    }
+
+    #nameWrapper {
       z-index: 0;
       position: relative;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height ease-in .5s;
+    }
+
+    #nameWrapper.extended {
+      max-height: 100px;
+      transition: max-height ease-in .5s;
     }
 
     .btn-toggle {

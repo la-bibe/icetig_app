@@ -1,17 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {flyInOut, scaleInOut, slideInOutAnimation, slideInTop, translateTop} from './login.animation';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
+import {ApiService} from "../../../services/api.service";
 
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.scss'],
-	animations: [slideInOutAnimation, scaleInOut, flyInOut, slideInTop, translateTop],
-	host: {'[@slideInOutAnimation]': ''}
 })
 export class LoginComponent implements OnInit {
 	firstName: string;
@@ -21,11 +19,11 @@ export class LoginComponent implements OnInit {
 	confirmPassword: string;
 	remember: boolean;
 
-	formType: string = 'register';
+	formType: string = 'login';
 
 	badCredentials = false;
 
-	constructor(private http: HttpClient, private authService: AuthService, private router: Router) {
+	constructor(private http: HttpClient, private authService: AuthService, private router: Router, private apiService: ApiService) {
 	}
 
 	ngOnInit() {
@@ -34,34 +32,64 @@ export class LoginComponent implements OnInit {
 	onSubmit() {
 
 		let credentials = `${this.eMail}:${this.password}`;
-		let remember = `?stay_connected=${(!this.remember) ? 1 : 0}`;
 
-		this.http.get(environment.apiUrl + '/security/access' + remember, {
-			headers: new HttpHeaders().set('Authorization', `Basic ${btoa(credentials)}`), withCredentials: true
-		}).toPromise()
+		if (this.isLogin()) {
+
+			this.logIn(credentials)
+
+		} else {
+
+			this.signIn(credentials);
+		}
+	}
+
+	signIn(credentials) {
+
+		this.apiService.userPost({
+			email: this.eMail,
+			passWord: this.password,
+			firstName: this.firstName,
+			lastName: this.lastName
+		}, credentials)
+			.then(result => {
+
+				this.logIn(credentials);
+
+			})
+			.catch(error => {
+
+			})
+	}
+
+	logIn(credentials) {
+
+		this.apiService.accessGet(credentials, !this.remember)
+
 			.then(result => {
 				window.localStorage.setItem('session', JSON.stringify((result as ILoginResponse).data));
 				this.router.navigateByUrl('');
 			})
 			.catch(error => {
+
 				this.badCredentials = true;
+
 				setTimeout(() => {
 					this.badCredentials = false
 				}, 3000);
 			})
 	}
 
-	toggleRegister() {
+	toggleMode() {
 
 		this.formType =
 			(this.isLogin())
-				? 'register'
+				? 'registration'
 				: 'login';
 	}
 
-	isRegister() {
+	isRegistration() {
 
-		return this.formType == 'register';
+		return this.formType == 'registration';
 	}
 
 	isLogin() {

@@ -3,8 +3,7 @@
         <app-dynamic-background height="100vh"></app-dynamic-background>
         <div class="row align-items-center">
             <div class="col"></div>
-            <div class="col-12 col-sm-10 col-md-6 col-lg-4 align-self-center" [inlineSVG]="'/pedago.svg'"
-                 [@translateTop]="formType" style="z-index: 1">
+            <div class="col-12 col-sm-10 col-md-6 col-lg-4 align-self-center" [inlineSVG]="'/pedago.svg'">
             </div>
             <div class="col"></div>
         </div>
@@ -16,7 +15,7 @@
 
                 <form class="form container-fluid">
 
-                    <div class="form row justify-content-between input-name" *ngIf="isRegister()" [@slideInTop]="formType" style="position: absolute">
+                    <div id="nameWrapper" class="form row justify-content-between" [class.extended]="isRegistration()">
 
                         <div class="form col-xs input-register">
                             <label for="firstname">Firstname</label>
@@ -37,17 +36,15 @@
 
                     <div class="form row justify-content-between">
 
-                        <div class="form col-xs input-login" [@scaleInOut]="formType">
-
+                        <div id="passwordWrapper" class="form col-xs input-login" [class.extended]="isRegistration()">
                             <label for="password">Password</label>
-                            <input [type]="(isRegister()) ? 'text' : 'password'" name="pass" id="password" required
+                            <input type="password" name="pass" id="password" required
                                    [(ngModel)]="password">
-
                         </div>
 
-                        <div class="form col-xs input-register" *ngIf="isRegister()" [@flyInOut]="formType">
+                        <div id="cpasswordWrapper" class="form col-xs input-register" [class.extended]="isRegistration()">
                             <label for="confirmPassword">Confirm</label>
-                            <input [type]="(isRegister()) ? 'text' : 'password'" name="cpass" id="confirmPassword" required
+                            <input type="password" name="cpass" id="confirmPassword" required
                                    [(ngModel)]="confirmPassword" class="pull-right">
                         </div>
 
@@ -65,10 +62,10 @@
                     <br>
                     <blockquote class="blockquote text-center">
                         <footer class="blockquote-footer btn btn-info btn-toggle"
-                                (click)="toggleRegister()">
+                                (click)="toggleMode()">
 
                             {{
-                            (isRegister())
+                            (isRegistration())
                             ? "Have an account ? Log in !"
                             : "No account ? Create one !"
                             }}
